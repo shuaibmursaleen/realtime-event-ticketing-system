@@ -26,12 +26,14 @@ public class OopcwApplication {
 
 	@PostMapping("/configuration")
 	public HashMap<String, Object> setConfiguration(@RequestBody HashMap<String, Object> body) {
+		if (body.containsKey("load_config")) Configuration.getInstance().loadConfigJson("config.json");
 		if (body.containsKey("status")) Configuration.getInstance().setRunStatus((boolean)body.get("status"));
 		if (body.containsKey("total_tickets")) Configuration.getInstance().setTotalTickets((int)body.get("total_tickets"));
 		if (body.containsKey("ticket_release_rate")) Configuration.getInstance().setTicketReleaseRate((int)body.get("ticket_release_rate"));
 		if (body.containsKey("customer_retrieval_rate")) Configuration.getInstance().setCustomerRetrievalRate((int)body.get("customer_retrieval_rate"));
 		if (body.containsKey("max_ticket_capacity")) Configuration.getInstance().setMaxTicketCapacity((int)body.get("max_ticket_capacity"));
 		if (body.containsKey("release_interval")) Configuration.getInstance().setReleaseInterval((int)body.get("release_interval"));
+		Configuration.getInstance().saveConfigJson("config.json");
 		return body;
 	}
 

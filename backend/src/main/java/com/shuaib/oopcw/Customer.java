@@ -36,7 +36,7 @@ public class Customer implements Runnable {
             Thread.currentThread().interrupt();
         }
     }
-
+    
     public int getCustomerId() {
         return this.customerId;
     }

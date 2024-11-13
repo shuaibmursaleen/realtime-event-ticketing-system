@@ -1,7 +1,15 @@
 package com.shuaib.oopcw;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import com.google.gson.Gson;
+
 public class Configuration {
     private static Configuration instance;
+
+    private static Gson gson = new Gson();
 
     private boolean runStatus = true;
     
@@ -18,6 +26,25 @@ public class Configuration {
             instance = new Configuration();
         }
         return instance;
+    }
+
+    public void loadConfigJson(String json) {
+        try {
+            instance = gson.fromJson(new FileReader(json),Configuration.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveConfigJson(String json) {
+        try {
+            FileWriter writer = new FileWriter(json);
+            gson.toJson(instance, writer);
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean getRunStatus() {
