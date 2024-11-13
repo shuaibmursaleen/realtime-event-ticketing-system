@@ -15,7 +15,27 @@ public class Customer implements Runnable {
     }
 
     @Override
-    public void run() {}
+    public void run() {
+        try {
+            Thread.sleep(1000);
+            while (true) {
+                if (!Configuration.getInstance().getRunStatus()) {
+                    continue;
+                }
+                TicketPool.getInstance().removeTicket();
+                if (this.vipCustomer) {
+                    System.out.printf("VIP Customer %d removed a ticket.%n", this.customerId);
+                }    
+                else {
+                    System.out.printf("Customer %d removed a ticket.%n", this.customerId);
+                }
+                Thread.sleep(this.retrievalInterval);
+                }          
+        } catch (InterruptedException e) {
+            System.out.println("Interrupted");
+            Thread.currentThread().interrupt();
+        }
+    }
 
     public int getCustomerId() {
         return this.customerId;
