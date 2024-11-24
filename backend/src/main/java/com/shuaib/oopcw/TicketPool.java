@@ -29,11 +29,11 @@ public class TicketPool {
         return this.totalTickets;
     }
 
-    public synchronized void addTicket(int ticketsPerRelease) {
+    public synchronized void addTicket(int ticketsPerRelease, int vendorId) {
         try {
             totalTickets += ticketsPerRelease;
             for (int i = 0; i < ticketsPerRelease; i++) {
-                Ticket ticket = new Ticket();
+                Ticket ticket = new Ticket(vendorId);
                 while (tickets.size() >= maxPoolSize) {
                     System.out.printf("Pool is full. Ticket %d waiting to be added.%n", ticket.getTicketId());
                     wait();
