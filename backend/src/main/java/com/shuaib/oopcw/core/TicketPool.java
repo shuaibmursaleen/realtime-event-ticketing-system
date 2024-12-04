@@ -1,6 +1,9 @@
-package com.shuaib.oopcw;
+package com.shuaib.oopcw.core;
 
 import java.util.List;
+
+import com.shuaib.oopcw.config.Configuration;
+
 import java.util.ArrayList;
 import java.util.Collections;
 

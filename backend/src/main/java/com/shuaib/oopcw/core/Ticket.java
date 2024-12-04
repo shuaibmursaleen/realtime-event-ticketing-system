@@ -1,4 +1,4 @@
-package com.shuaib.oopcw;
+package com.shuaib.oopcw.core;
 
 import java.util.Random;
 
