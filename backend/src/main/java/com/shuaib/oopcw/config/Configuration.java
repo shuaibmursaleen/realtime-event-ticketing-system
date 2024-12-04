@@ -1,5 +1,6 @@
-package com.shuaib.oopcw;
+package com.shuaib.oopcw.config;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,26 +25,31 @@ public class Configuration {
     public static Configuration getInstance() {
         if (instance == null) {
             instance = new Configuration();
+            if (new File("config.json").exists()) {
+                getInstance().loadConfigJson("config.json");
+            }
         }
         return instance;
     }
 
-    public void loadConfigJson(String json) {
+    public boolean loadConfigJson(String json) {
         try {
             instance = gson.fromJson(new FileReader(json),Configuration.class);
+            return true;
         } catch (IOException e) {
-            e.printStackTrace();
+            return false;
         }
     }
 
-    public void saveConfigJson(String json) {
+    public boolean saveConfigJson(String json) {
         try {
             FileWriter writer = new FileWriter(json);
             gson.toJson(instance, writer);
             writer.flush();
             writer.close();
+            return true;
         } catch (IOException e) {
-            e.printStackTrace();
+            return false;
         }
     }
 

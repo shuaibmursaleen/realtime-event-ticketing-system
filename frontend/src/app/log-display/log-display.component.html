@@ -1,0 +1,14 @@
+<main class="flex flex-col min-h-dvh place-items-center gap-3">
+    <h1 class="text-lg font-medium text-left">Application Logs</h1>
+    <div class="h-96 w-10/12 bg-zinc-50 rounded-lg p-2 border">
+        <div *ngIf="noLogs" class="flex flex-col min-h-80 justify-center place-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-6 text-zinc-400">
+                <path d="M13 12h8"/><path d="M13 18h8"/><path d="M13 6h8"/><path d="M3 12h1"/><path d="M3 18h1"/><path d="M3 6h1"/><path d="M8 12h1"/><path d="M8 18h1"/><path d="M8 6h1"/>
+            </svg>
+            <p class="text-sm font-medium text-zinc-400">No Logs Available</p>
+        </div>
+        <div *ngIf="!noLogs">
+            <p *ngFor="let log of logs; let i=index" class="text-sm font-medium">{{log}}</p>
+        </div>
+    </div>
+</main>

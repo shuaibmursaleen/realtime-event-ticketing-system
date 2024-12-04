@@ -1,4 +1,4 @@
-package com.shuaib.oopcw;
+package com.shuaib.oopcw.backend_api;
 
 import java.util.*;
 
@@ -10,10 +10,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shuaib.oopcw.config.Configuration;
+import com.shuaib.oopcw.core.Customer;
+import com.shuaib.oopcw.core.Ticket;
+import com.shuaib.oopcw.core.TicketPool;
+import com.shuaib.oopcw.core.Vendor;
+
 @SpringBootApplication
 @CrossOrigin
 @RestController
 public class OopcwApplication {
+
 	public static void main(String[] args) {
 		SpringApplication.run(OopcwApplication.class, args);
 	}
@@ -23,6 +30,8 @@ public class OopcwApplication {
 
 	public List<Customer> customers = new ArrayList<Customer>();
 	public List<Vendor> vendors = new ArrayList<Vendor>();
+
+	public List<String> logs = new ArrayList<String>();
 
 	@GetMapping("/configuration")
 	public Object getConfiguration() {
