@@ -25,11 +25,11 @@ public class OopcwApplication {
 		SpringApplication.run(OopcwApplication.class, args);
 	}
 
-	public HashMap<String, Object> vendorThreads= new HashMap<String, Object>();
-	public HashMap<String, Object> customerThreads = new HashMap<String, Object>();
+	public HashMap<Integer, Thread> vendorThreads= new HashMap<Integer, Thread>();
+	public HashMap<Integer, Thread> customerThreads = new HashMap<Integer, Thread>();
 
-	public List<Customer> customers = new ArrayList<Customer>();
-	public List<Vendor> vendors = new ArrayList<Vendor>();
+	public HashMap<Integer, Customer> customers = new HashMap<Integer, Customer>();
+	public HashMap<Integer, Vendor> vendors = new HashMap<Integer, Vendor>();
 
 	public List<String> logs = new ArrayList<String>();
 
@@ -63,7 +63,7 @@ public class OopcwApplication {
 	}
 
 	@GetMapping("/customers")
-	public List<Customer> getCustomers() {
+	public HashMap<Integer, Customer> getCustomers() {
 		return customers;
 	}
 
@@ -72,15 +72,15 @@ public class OopcwApplication {
 		int retrievalInterval = body.containsKey("retrieval_interval") ? (int) body.get("retrieval_interval") : Configuration.getInstance().getCustomerRetrievalRate();
 		boolean vipCustomer = body.containsKey("vip_customer") ? (boolean) body.get("vip_customer") : false;
 		Customer customer = new Customer(retrievalInterval, vipCustomer);
-		customers.add(customer);
+		customers.put(customer.getCustomerId(), customer);
 		Thread thread = new Thread(customer,"Customer" + String.valueOf(customer.getCustomerId()));
-		customerThreads.put(String.valueOf(customer.getCustomerId()), thread);
+		customerThreads.put(customer.getCustomerId(), thread);
 		thread.start();
 		return customer;
 	}
 
 	@GetMapping("/vendors")
-	public List<Vendor> getVendors() {
+	public HashMap<Integer, Vendor> getVendors() {
 		return vendors;
 	}
 
@@ -89,10 +89,32 @@ public class OopcwApplication {
 		int ticketsPerRelease = body.containsKey("tickets_per_release") ? (int) body.get("tickets_per_release") : Configuration.getInstance().getTicketReleaseRate();
 		int releaseInterval = body.containsKey("release_interval") ? (int) body.get("release_interval") : Configuration.getInstance().getReleaseInterval();
 		Vendor vendor = new Vendor(ticketsPerRelease, releaseInterval);
-		vendors.add(vendor);
+		vendors.put(vendor.getVendorId(), vendor);
 		Thread thread = new Thread(vendor,"Vendor:" + String.valueOf(vendor.getVendorId()));
-		vendorThreads.put(String.valueOf(vendor.getVendorId()), thread);
-		thread.start();
+		vendorThreads.put(vendor.getVendorId(), thread);
+		vendorThreads.get(vendor.getVendorId()).start();
 		return vendor;
+	}
+
+	@PostMapping("/vendors/toggle")
+	public void toggleVendor(@RequestBody HashMap<String, Object> body) {
+		if ((boolean) body.get("vendor_toggle")) {
+			vendorThreads.get((int)body.get("vendor_id")).start();
+		}
+		else {
+			vendorThreads.get((int)body.get("vendor_id")).interrupt();
+			vendorThreads.replace((int)body.get("vendor_id"), new Thread(vendors.get((int) body.get("vendor_id")), "Vendor: " + body.get("vendor_id")));
+		}
+	}
+
+	@PostMapping("/customers/toggle")
+	public void toggleCustomer(@RequestBody HashMap<String, Object> body) {
+		if ((boolean) body.get("customer_toggle")) {
+			customerThreads.get((int)body.get("customer_id")).start();
+		}
+		else {
+			customerThreads.get((int)body.get("customer_id")).interrupt();
+			customerThreads.replace((int)body.get("customer_id"), new Thread(vendors.get((int) body.get("customer_id")), "Customer: " + body.get("customer_id")));
+		}
 	}
 }
