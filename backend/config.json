@@ -1,1 +1,1 @@
-{"runStatus":true,"totalTickets":60,"ticketReleaseRate":1,"customerRetrievalRate":1,"maxTicketCapacity":5,"releaseInterval":500}
+{"runStatus":true,"totalTickets":10,"ticketReleaseRate":100,"customerRetrievalRate":10,"maxTicketCapacity":100,"releaseInterval":10}

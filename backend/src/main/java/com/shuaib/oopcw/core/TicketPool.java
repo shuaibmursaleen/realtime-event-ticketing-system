@@ -48,7 +48,7 @@ public class TicketPool {
             notifyAll();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-        } 
+        }
     }
 
     public synchronized void removeTicket() {

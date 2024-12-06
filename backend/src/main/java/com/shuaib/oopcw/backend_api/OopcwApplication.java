@@ -35,6 +35,7 @@ public class OopcwApplication {
 
 	@GetMapping("/configuration")
 	public Object getConfiguration() {
+		Configuration.getInstance().loadConfigJson("config.json");
 		HashMap<String, Object> response = new HashMap<String, Object>();
 		response.put("total_tickets", Configuration.getInstance().getTotalTickets());
 		response.put("ticket_release_rate", Configuration.getInstance().getTicketReleaseRate());
@@ -99,7 +100,9 @@ public class OopcwApplication {
 	@PostMapping("/vendors/toggle")
 	public void toggleVendor(@RequestBody HashMap<String, Object> body) {
 		if ((boolean) body.get("vendor_toggle")) {
-			vendorThreads.get((int)body.get("vendor_id")).start();
+			if (!vendorThreads.get((int) body.get("vendor_id")).isAlive()) {
+				vendorThreads.get((int)body.get("vendor_id")).start();
+			}
 		}
 		else {
 			vendorThreads.get((int)body.get("vendor_id")).interrupt();
@@ -110,7 +113,9 @@ public class OopcwApplication {
 	@PostMapping("/customers/toggle")
 	public void toggleCustomer(@RequestBody HashMap<String, Object> body) {
 		if ((boolean) body.get("customer_toggle")) {
-			customerThreads.get((int)body.get("customer_id")).start();
+			if (!customerThreads.get((int) body.get("customer_id")).isAlive()) {
+				customerThreads.get((int)body.get("customer_id")).start();
+			}
 		}
 		else {
 			customerThreads.get((int)body.get("customer_id")).interrupt();
