@@ -18,15 +18,14 @@ public class Configuration {
     private int ticketReleaseRate = 2;
     private int customerRetrievalRate = 2;
     private int maxTicketCapacity = 5;
-    private int releaseInterval = 4000;
     
     private Configuration() {}
 
     public static Configuration getInstance() {
         if (instance == null) {
             instance = new Configuration();
-            if (new File("config.json").exists()) {
-                getInstance().loadConfigJson("config.json");
+            if (new File("./src/main/resources/config.json").exists()) {
+                getInstance().loadConfigJson("./src/main/resources/config.json");
             }
         }
         return instance;
@@ -93,11 +92,4 @@ public class Configuration {
         this.maxTicketCapacity = maxTicketCapacity;
     }
 
-    public int getReleaseInterval() {
-        return this.releaseInterval;
-    }
-
-    public void setReleaseInterval(int releaseInterval) {
-        this.releaseInterval = releaseInterval;
-    }
 }

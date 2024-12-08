@@ -21,11 +21,8 @@ public class Cli {
         
         getInputs("Max Ticket Capacity");
         Configuration.getInstance().setMaxTicketCapacity(input);
-        
-        getInputs("Release Interval");
-        Configuration.getInstance().setReleaseInterval(input);;
 
-        boolean saveConfig = Configuration.getInstance().saveConfigJson("config.json");
+        boolean saveConfig = Configuration.getInstance().saveConfigJson("./src/main/resources/config.json");
 
         if (saveConfig == true) {
             System.out.println("Configuration saved succesfully!");

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss} %m%n</Property>
+        <Property name="APP_LOG_ROOT">./src/main/resources/logs</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+        </Console>
+        <RollingFile name="fileLogs"
+                fileName="${APP_LOG_ROOT}/oopcw.log"
+                filePattern="${APP_LOG_ROOT}/oopcw-%d{yyyy-MM-dd HHmm}.log">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <Policies>
+                <OnStartupTriggeringPolicy />
+            </Policies>
+            <DefaultRolloverStrategy max="1" />
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.apache" level="off" additivity="false"></Logger>
+        <Logger name="org.springframework" level="off" additivity="false"></Logger>
+        <Logger name="org.springframework.boot" level="off" additivity="false"></Logger>
+        <Root level="info">
+            <AppenderRef ref="Console" level="info" />
+            <AppenderRef ref="fileLogs" level="info" />
+        </Root>
+    </Loggers>
+</Configuration>

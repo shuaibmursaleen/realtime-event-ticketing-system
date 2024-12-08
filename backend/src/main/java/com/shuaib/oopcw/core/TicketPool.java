@@ -2,12 +2,16 @@ package com.shuaib.oopcw.core;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.shuaib.oopcw.config.Configuration;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class TicketPool {
+    private static final Logger logger = LogManager.getLogger("GLOBAL");
     private static TicketPool instance;
 
     private List<Ticket> tickets = Collections.synchronizedList(new ArrayList<Ticket>());
@@ -38,12 +42,12 @@ public class TicketPool {
             for (int i = 0; i < ticketsPerRelease; i++) {
                 Ticket ticket = new Ticket(vendorId);
                 while (tickets.size() >= maxPoolSize) {
-                    System.out.printf("Pool is full. Ticket %d waiting to be added.%n", ticket.getTicketId());
+                    logger.warn("Pool is full. Ticket {} waiting to be added.", ticket.getTicketId());
                     wait();
                 }
                 Thread.sleep(1000);
                 tickets.add(ticket);
-                System.out.printf("Ticket %d was added to the pool, current Ticket count is %d.%n", ticket.getTicketId(), tickets.size());
+                logger.info("Ticket {} was added to the pool, current Ticket count is {}.", ticket.getTicketId(), tickets.size());
             }
             notifyAll();
         } catch (InterruptedException e) {
@@ -54,11 +58,11 @@ public class TicketPool {
     public synchronized void removeTicket() {
         try {
             while (tickets.isEmpty()) {
-                System.out.println("No tickets available. Waiting to be removed.");
+                logger.warn("No tickets available. Waiting to be removed.");
                 wait();
             }
             Thread.sleep(2000);
-            System.out.printf("Ticket %d was removed from the pool.%n", tickets.get(0).getTicketId());
+            logger.info("Ticket {} was removed from the pool.", tickets.get(0).getTicketId());
             tickets.remove(0);
             notifyAll();
         } catch (InterruptedException e) {

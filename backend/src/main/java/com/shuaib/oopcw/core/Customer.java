@@ -2,9 +2,13 @@ package com.shuaib.oopcw.core;
 
 import java.util.Random;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.shuaib.oopcw.config.Configuration;
 
 public class Customer implements Runnable {
+    private static final Logger logger = LogManager.getLogger("GLOBAL");
     private final int customerId;
     private int retrievalInterval;
 
@@ -26,15 +30,15 @@ public class Customer implements Runnable {
                 }
                 TicketPool.getInstance().removeTicket();
                 if (this.vipCustomer) {
-                    System.out.printf("VIP Customer %d removed a ticket.%n", this.customerId);
+                    logger.info("VIP Customer {} removed a ticket.", this.customerId);
                 }    
                 else {
-                    System.out.printf("Customer %d removed a ticket.%n", this.customerId);
+                    logger.info("Customer {} removed a ticket.", this.customerId);
                 }
                 Thread.sleep(this.retrievalInterval);
                 }          
         } catch (InterruptedException e) {
-            System.out.println("Interrupted");
+            logger.warn("Interrupted");
             Thread.currentThread().interrupt();
         }
     }

@@ -5,6 +5,7 @@ import java.util.Random;
 public class Ticket {
     private final int vendorId;
     private final int ticketId;
+    private final int customerId = 0;
 
     public Ticket(int vendorId) {
         this.ticketId = new Random().nextInt(10000);
@@ -12,10 +13,14 @@ public class Ticket {
     }
 
     public int getTicketId() {
-        return ticketId;
+        return this.ticketId;
     }
 
     public int getVendorId() {
-        return vendorId;
+        return this.vendorId;
+    }
+
+    public int getCustomerId() {
+        return this.customerId;
     }
 }

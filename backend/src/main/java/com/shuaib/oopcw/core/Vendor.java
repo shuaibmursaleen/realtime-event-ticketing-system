@@ -2,9 +2,13 @@ package com.shuaib.oopcw.core;
 
 import java.util.Random;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.shuaib.oopcw.config.Configuration;
 
 public class Vendor implements Runnable {
+    private static final Logger logger = LogManager.getLogger("GLOBAL");
     private final int vendorId;
     private int ticketsPerRelease;
     private int releaseInterval;
@@ -26,27 +30,26 @@ public class Vendor implements Runnable {
                 }
                 
                 if (TicketPool.getInstance().getTotalTickets() >= Configuration.getInstance().getTotalTickets()){
-                    System.out.println("Total Tickets producable reached.");
-                    System.out.println(Configuration.getInstance().getTotalTickets());
+                    logger.warn("Total Tickets producable reached.");
                 }
 
                 else if (TicketPool.getInstance().getTotalTickets() + this.ticketsPerRelease >= Configuration.getInstance().getTotalTickets()) {
                     this.ticketsAddable = Configuration.getInstance().getTotalTickets() - TicketPool.getInstance().getTotalTickets();
-                    System.out.printf("Cannot add tickets according to vendor %d tickets per release rate because total tickets producable will be exceeded.%nAdding %d tickets instead.%n", this.vendorId, this.ticketsAddable);
+                    logger.warn("Cannot add tickets according to vendor {} tickets per release rate because total tickets producable will be exceeded./nAdding {} tickets instead.", this.vendorId, this.ticketsAddable);
                     TicketPool.getInstance().addTicket(this.ticketsAddable, this.vendorId);
-                    System.out.printf("Vendor %d released %d tickets.%n", this.vendorId, this.ticketsAddable);
+                    logger.info("Vendor {} released {} tickets.", this.vendorId, this.ticketsAddable);
                     this.ticketsAddable = 0; //reset variable
                 }
 
                 else {
                     TicketPool.getInstance().addTicket(this.ticketsPerRelease, this.vendorId); 
-                    System.out.printf("Vendor %d released %d tickets.%n", this.vendorId, this.ticketsPerRelease);
+                    logger.info("Vendor {} released {} tickets.", this.vendorId, this.ticketsPerRelease);
                 }
                 System.out.println(TicketPool.getInstance().getTotalTickets());
                 Thread.sleep(this.releaseInterval);
             }
         } catch (InterruptedException e) {
-            System.out.println("Interrupted");
+            logger.warn("Interrupted");
             Thread.currentThread().interrupt();
         }
     }
