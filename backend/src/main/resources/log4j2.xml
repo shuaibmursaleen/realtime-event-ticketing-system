@@ -9,8 +9,17 @@
             <PatternLayout pattern="${LOG_PATTERN}" />
         </Console>
         <RollingFile name="fileLogs"
-                fileName="${APP_LOG_ROOT}/oopcw.log"
-                filePattern="${APP_LOG_ROOT}/oopcw-%d{yyyy-MM-dd HHmm}.log">
+                fileName="${APP_LOG_ROOT}/running-logs/oopcw.log"
+                filePattern="${APP_LOG_ROOT}/running-logs/oopcw-%d{yyyy-MM-dd HHmm}.log">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <Policies>
+                <OnStartupTriggeringPolicy />
+            </Policies>
+            <DefaultRolloverStrategy max="1" />
+        </RollingFile>
+        <RollingFile name="debugLogs"
+                fileName="${APP_LOG_ROOT}/debug-logs/oopcw_debug.log"
+                filePattern="${APP_LOG_ROOT}/debug-logs/oopcw_debug-%d{yyyy-MM-dd HHmm}.log">
             <PatternLayout pattern="${LOG_PATTERN}" />
             <Policies>
                 <OnStartupTriggeringPolicy />
@@ -22,9 +31,10 @@
         <Logger name="org.apache" level="off" additivity="false"></Logger>
         <Logger name="org.springframework" level="off" additivity="false"></Logger>
         <Logger name="org.springframework.boot" level="off" additivity="false"></Logger>
-        <Root level="info">
+        <Root level="debug">
             <AppenderRef ref="Console" level="info" />
             <AppenderRef ref="fileLogs" level="info" />
+            <AppenderRef ref="debugLogs" level="debug" />
         </Root>
     </Loggers>
 </Configuration>

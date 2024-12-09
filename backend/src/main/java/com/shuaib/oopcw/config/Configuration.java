@@ -1,32 +1,31 @@
 package com.shuaib.oopcw.config;
 
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
 import com.google.gson.Gson;
+import com.shuaib.oopcw.models.Customer;
+import com.shuaib.oopcw.models.Vendor;
 
 public class Configuration {
     private static Configuration instance;
 
-    private static Gson gson = new Gson();
+    private static final Gson gson = new Gson();
 
-    private boolean runStatus = true;
+    private volatile boolean runStatus = true;
     
-    private int totalTickets = 10;
-    private int ticketReleaseRate = 2;
-    private int customerRetrievalRate = 2;
-    private int maxTicketCapacity = 5;
+    private volatile int totalTickets = 10;
+    private volatile int ticketReleaseRate = 2000;
+    private volatile int customerRetrievalRate = 2000;
+    private volatile int maxTicketCapacity = 5;
     
     private Configuration() {}
 
     public static Configuration getInstance() {
         if (instance == null) {
             instance = new Configuration();
-            if (new File("./src/main/resources/config.json").exists()) {
-                getInstance().loadConfigJson("./src/main/resources/config.json");
-            }
         }
         return instance;
     }
@@ -56,8 +55,11 @@ public class Configuration {
         return this.runStatus;
     }
 
-    public void setRunStatus(boolean runStatus) {
+    public synchronized void setRunStatus(boolean runStatus) {
         this.runStatus = runStatus;
+        if (runStatus) {
+            resumeRunning();
+        }
     }
 
     public int getTotalTickets() {
@@ -88,8 +90,36 @@ public class Configuration {
         return this.maxTicketCapacity;
     }
 
-    public void setMaxTicketCapacity(int maxTicketCapacity) {
+    public synchronized void setMaxTicketCapacity(int maxTicketCapacity) {
         this.maxTicketCapacity = maxTicketCapacity;
+        
+    }
+
+    public synchronized void vendorWaitTillRunning(Vendor vendor) {
+        try {
+            while (!this.runStatus || !vendor.getRunStatus()) {
+                wait();
+            } 
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public synchronized void customerWaitTillRunning(Customer customer) {
+        try {
+            while (!this.runStatus || !customer.getRunStatus()) {
+                wait();
+                System.out.println("wait stopped");
+                System.out.println(this.runStatus);
+                System.out.println(customer.getRunStatus());
+            } 
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public synchronized void resumeRunning() {
+        notifyAll();
     }
 
 }

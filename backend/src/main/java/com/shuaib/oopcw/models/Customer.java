@@ -1,4 +1,4 @@
-package com.shuaib.oopcw.core;
+package com.shuaib.oopcw.models;
 
 import java.util.Random;
 
@@ -6,35 +6,32 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.shuaib.oopcw.config.Configuration;
+import com.shuaib.oopcw.synchronized_ticketpool.TicketPool;
 
 public class Customer implements Runnable {
-    private static final Logger logger = LogManager.getLogger("GLOBAL");
+    private final Logger logger;
+
     private final int customerId;
     private int retrievalInterval;
 
-    private boolean vipCustomer;
+    private boolean runStatus;
 
-    public Customer(int retrievalInterval, boolean vipCustomer) {
+    public Customer(int retrievalInterval) {
+        this.logger = LogManager.getLogger("GLOBAL");
+
         this.customerId = new Random().nextInt(10000);
         this.retrievalInterval = retrievalInterval;
-        this.vipCustomer = vipCustomer;
+
+        this.runStatus = true;
     }
 
     @Override
     public void run() {
         try {
-            Thread.sleep(1000);
             while (true) {
-                if (!Configuration.getInstance().getRunStatus()) {
-                    continue;
-                }
+                Configuration.getInstance().customerWaitTillRunning(this);
                 TicketPool.getInstance().removeTicket();
-                if (this.vipCustomer) {
-                    logger.info("VIP Customer {} removed a ticket.", this.customerId);
-                }    
-                else {
-                    logger.info("Customer {} removed a ticket.", this.customerId);
-                }
+                logger.info("Customer {} removed a ticket.", this.customerId);
                 Thread.sleep(this.retrievalInterval);
                 }          
         } catch (InterruptedException e) {
@@ -55,11 +52,18 @@ public class Customer implements Runnable {
         this.retrievalInterval = retrievalInterval;
     }
 
-    public boolean getVipCustomer() {
-        return this.vipCustomer;
+    public boolean getRunStatus() {
+        return this.runStatus;
     }
 
-    public void setVipCustomer(boolean vipCustomer) {
-        this.vipCustomer = vipCustomer;
+    public void setRunStatus(boolean runStatus) {
+        this.runStatus = runStatus;
+        if (Configuration.getInstance().getRunStatus() && runStatus) {
+            Configuration.getInstance().resumeRunning();
+        }
+    }
+
+    public void removeCustomer() {
+        Thread.currentThread().interrupt();
     }
 }
