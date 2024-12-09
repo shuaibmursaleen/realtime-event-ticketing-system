@@ -1,13 +1,12 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Injectable, numberAttribute, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AppComponent } from '../app.component';
 
 interface Configuration {
-  total_tickets?: number;
-  ticket_release_rate?: number;
-  customer_retrieval_rate?: number;
-  max_ticket_capacity?: number;
-  release_interval?: number;
+  total_tickets: number;
+  ticket_release_rate: number;
+  customer_retrieval_rate: number;
+  max_ticket_capacity: number;
 }
 
 @Component({
@@ -19,34 +18,52 @@ interface Configuration {
 })
 
 export class ConfigurationFormComponent implements OnInit{
-  http: HttpClient;
-  config: Configuration | undefined = undefined;
+  config: Configuration;
 
-  totalTickets: number | undefined = undefined;
-  ticketReleaseRate: number | undefined = undefined;
-  customerRetrievalRate: number | undefined = undefined;
-  maxTicketCapacity: number | undefined = undefined;
-  releaseInterval: number | undefined = undefined;
+  totalTickets: number;
+  ticketReleaseRate: number;
+  customerRetrievalRate: number;
+  maxTicketCapacity: number;
 
-  constructor(http:HttpClient) {
-    this.http = http;
+  constructor(private host:AppComponent) {
+    this.config = {total_tickets: 0,
+      ticket_release_rate: 0,
+      customer_retrieval_rate: 0,
+      max_ticket_capacity: 0
+    };
+    this.totalTickets = 0;
+    this.ticketReleaseRate = 0;
+    this.customerRetrievalRate = 0;
+    this.maxTicketCapacity = 0;
+
   }
+
 
   async ngOnInit(): Promise<void> {
     this.getConfig();
   }
 
-  getConfig(): void {
-    this.http.get<Configuration> ("http://localhost:8080/configuration").subscribe((config) => {
-      this.config = config;
-      console.log(config);
-    });
+  async getConfig(): Promise<void> {
+    try{
+      const response = await this.host.client.get("/configuration");
+      this.config = response.data;
+    } catch(error) {
+      this.config = {total_tickets: 0,
+        ticket_release_rate: 0,
+        customer_retrieval_rate: 0,
+        max_ticket_capacity: 0
+      };
+    }
   }
 
-  setConfig(total_tickets?: number, ticket_release_rate?: number, customer_retrieval_rate?: number, max_ticket_capacity?: number, release_interval?: number): void {
-    console.log(total_tickets, ticket_release_rate, customer_retrieval_rate, max_ticket_capacity, release_interval);
-    this.http.post("http://localhost:8080/configuration", {total_tickets, ticket_release_rate, customer_retrieval_rate, max_ticket_capacity, release_interval}).subscribe(() => {
-      this.getConfig();
+  async setConfig(total_tickets: number, ticket_release_rate: number, customer_retrieval_rate: number, max_ticket_capacity: number): Promise<void> {
+    console.log(total_tickets, ticket_release_rate, customer_retrieval_rate, max_ticket_capacity);
+    this.host.client.post("/configuration", {
+      "total_tickets": total_tickets,
+      "ticket_release_rate": ticket_release_rate,
+      "customer_retrieval_rate": customer_retrieval_rate,
+      "max_ticket_capacity": max_ticket_capacity
     })
+    this.getConfig();
   }
 }

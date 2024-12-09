@@ -3,25 +3,21 @@
         <form class="flex flex-col gap-10">
             <div class="flex items-center justify-between">
                 <label class="text-base font-medium">Total Tickets:</label>
-                <input type="number" [(ngModel)]="totalTickets" name="totalTickets" class="border rounded-lg h-9 px-3 focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-800 font-medium text-center" value="{{config?.total_tickets}}"/>
+                <input type="number" [(ngModel)]="totalTickets" name="totalTickets" class="border rounded-lg h-9 px-3 focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-800 font-medium text-center" value="{{config.total_tickets}}"/>
             </div>
             <div class="flex items-center justify-between">
                 <label class="text-base font-medium">Ticket Release Rate:</label>
-                <input type="number" [(ngModel)]="ticketReleaseRate" name="ticketReleaseRate" class="border rounded-lg h-9 px-3 focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-800 font-medium text-center" value="{{config?.ticket_release_rate}}"/>
+                <input type="number" [(ngModel)]="ticketReleaseRate" name="ticketReleaseRate" class="border rounded-lg h-9 px-3 focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-800 font-medium text-center" value="{{config.ticket_release_rate}}"/>
             </div>
             <div class="flex items-center justify-between">
                 <label class="text-base font-medium max-w-36 text-justify">Customer Retrieval Rate:</label>
-                <input type="number" [(ngModel)]="customerRetrievalRate" name="customerRetrievalRate" class="border rounded-lg h-9 px-3 focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-800 font-medium text-center" value="{{config?.customer_retrieval_rate}}"/>
+                <input type="number" [(ngModel)]="customerRetrievalRate" name="customerRetrievalRate" class="border rounded-lg h-9 px-3 focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-800 font-medium text-center" value="{{config.customer_retrieval_rate}}"/>
             </div>
             <div class="flex items-center justify-between">
                 <label class="text-base font-medium">Max Ticket Capacity:</label>
-                <input type="number" [(ngModel)]="maxTicketCapacity" name="maxTicketCapacity" class="border rounded-lg h-9 px-3 focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-800 font-medium text-center" value="{{config?.max_ticket_capacity}}"/>
+                <input type="number" [(ngModel)]="maxTicketCapacity" name="maxTicketCapacity" class="border rounded-lg h-9 px-3 focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-800 font-medium text-center" value="{{config.max_ticket_capacity}}"/>
             </div>
-            <div class="flex items-center justify-between">
-                <label class="text-base font-medium">Release Interval:</label>
-                <input type="number" [(ngModel)]="releaseInterval" name="releaseInterval" class="border rounded-lg h-9 px-3 focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-800 font-medium text-center" value="{{config?.release_interval}}"/>
-            </div>
-            <button (click)="setConfig(totalTickets, ticketReleaseRate, customerRetrievalRate, maxTicketCapacity, releaseInterval)" type="submit" class="bg-black text-white px-3 rounded-lg h-9 text-sm font-medium min-w-96 self-end">Set Configuration</button>
+            <button (click)="setConfig(totalTickets, ticketReleaseRate, customerRetrievalRate, maxTicketCapacity)" type="submit" class="bg-black text-white px-3 rounded-lg h-9 text-sm font-medium min-w-96 self-end">Set Configuration</button>
         </form>
     </div>
 </main>
