@@ -8,6 +8,7 @@ import java.io.IOException;
 import com.google.gson.Gson;
 import com.shuaib.oopcw.models.Customer;
 import com.shuaib.oopcw.models.Vendor;
+import com.shuaib.oopcw.synchronized_ticketpool.TicketPool;
 
 public class Configuration {
     private static Configuration instance;
@@ -67,6 +68,10 @@ public class Configuration {
     }
 
     public void setTotalTickets(int totalTickets) {
+        if (this.totalTickets != totalTickets) {
+            this.totalTickets = totalTickets;
+            TicketPool.getInstance().resumePool();
+        }
         this.totalTickets = totalTickets;
     }
 
@@ -91,8 +96,11 @@ public class Configuration {
     }
 
     public synchronized void setMaxTicketCapacity(int maxTicketCapacity) {
+        if (this.maxTicketCapacity != maxTicketCapacity) {
+            this.maxTicketCapacity = maxTicketCapacity;
+            TicketPool.getInstance().resumePool();
+        }      
         this.maxTicketCapacity = maxTicketCapacity;
-        
     }
 
     public synchronized void vendorWaitTillRunning(Vendor vendor) {

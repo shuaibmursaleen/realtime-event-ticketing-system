@@ -20,7 +20,7 @@
         <RollingFile name="debugLogs"
                 fileName="${APP_LOG_ROOT}/debug-logs/oopcw_debug.log"
                 filePattern="${APP_LOG_ROOT}/debug-logs/oopcw_debug-%d{yyyy-MM-dd HHmm}.log">
-            <PatternLayout pattern="${LOG_PATTERN}" />
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} - [%C] %m%n" />
             <Policies>
                 <OnStartupTriggeringPolicy />
             </Policies>
@@ -28,13 +28,18 @@
         </RollingFile>
     </Appenders>
     <Loggers>
-        <Logger name="org.apache" level="off" additivity="false"></Logger>
-        <Logger name="org.springframework" level="off" additivity="false"></Logger>
-        <Logger name="org.springframework.boot" level="off" additivity="false"></Logger>
-        <Root level="debug">
+        <Logger name="org.springframework.boot" additivity="false">
+            <AppenderRef ref="debugLogs" />
+        </Logger>
+        <Logger name="org.springframework" additivity="false">
+            <AppenderRef ref="debugLogs" />
+        </Logger>
+        <Logger name="org.apache" additivity="false">
+            <AppenderRef ref="debugLogs" />
+        </Logger>
+        <Root level="info">
             <AppenderRef ref="Console" level="info" />
             <AppenderRef ref="fileLogs" level="info" />
-            <AppenderRef ref="debugLogs" level="debug" />
         </Root>
     </Loggers>
 </Configuration>

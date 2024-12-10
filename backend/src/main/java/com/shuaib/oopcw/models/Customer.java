@@ -2,14 +2,12 @@ package com.shuaib.oopcw.models;
 
 import java.util.Random;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import com.shuaib.oopcw.config.Configuration;
+import com.shuaib.oopcw.logs.LogsHelper;
 import com.shuaib.oopcw.synchronized_ticketpool.TicketPool;
 
 public class Customer implements Runnable {
-    private final Logger logger;
 
     private final int customerId;
     private int retrievalInterval;
@@ -17,8 +15,6 @@ public class Customer implements Runnable {
     private boolean runStatus;
 
     public Customer(int retrievalInterval) {
-        this.logger = LogManager.getLogger("GLOBAL");
-
         this.customerId = new Random().nextInt(10000);
         this.retrievalInterval = retrievalInterval;
 
@@ -31,11 +27,11 @@ public class Customer implements Runnable {
             while (true) {
                 Configuration.getInstance().customerWaitTillRunning(this);
                 TicketPool.getInstance().removeTicket();
-                logger.info("Customer {} removed a ticket.", this.customerId);
+                LogsHelper.getInstance().addLog(String.format("Customer %d removed a ticket.", this.customerId));
                 Thread.sleep(this.retrievalInterval);
                 }          
         } catch (InterruptedException e) {
-            logger.warn("Interrupted");
+            LogsHelper.getInstance().addLog(String.format("Customer %d Interrupted", this.customerId));
             Thread.currentThread().interrupt();
         }
     }

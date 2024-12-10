@@ -7,37 +7,45 @@ import java.util.Map;
 import com.shuaib.oopcw.models.Vendor;
 
 public class VendorFunction {
-    public static Map<Integer, Vendor> vendors;
-    public static Map<Integer, Thread> vendorThreads;
+    private static VendorFunction instance;
+    private final Map<Integer, Vendor> vendors;
+    private final Map<Integer, Thread> vendorThreads;
 
-    public VendorFunction() {
-	    vendors = new HashMap<>();
-        vendorThreads = new HashMap<>();
+    private VendorFunction() {
+	    this.vendors = new HashMap<>();
+        this.vendorThreads = new HashMap<>();
+    }
+
+    public static VendorFunction getInstance() {
+        if (instance == null) {
+            instance = new VendorFunction();
+        }
+        return instance;
     }
 
     public Map<Integer, Vendor> getVendors() {
-        return vendors;
+        return this.vendors;
     }
 
     public void addVendor(Vendor vendor) {
-        vendors.put(vendor.getVendorId(), vendor);
+        this.vendors.put(vendor.getVendorId(), vendor);
     }
 
     public Map<Integer, Thread> getVendorThreads() {
-        return vendorThreads;
+        return this.vendorThreads;
     }
 
     public void addVendorThread(int vendorId, Thread thread) {
-        vendorThreads.put(vendorId, thread);
+        this.vendorThreads.put(vendorId, thread);
     }
 
     public void setVendorStatus(int vendorId, boolean status) {
-        vendors.get(vendorId).setRunStatus(status);
+        this.vendors.get(vendorId).setRunStatus(status);
     }
 
     public void removeVendor(int vendorId) {
-        vendorThreads.get(vendorId).interrupt();
-        vendorThreads.remove(vendorId);
-        vendors.remove(vendorId);
+        this.vendorThreads.get(vendorId).interrupt();
+        this.vendorThreads.remove(vendorId);
+        this.vendors.remove(vendorId);
     }
 }

@@ -1,14 +1,18 @@
 package com.shuaib.oopcw.backend_api;
 
+import java.io.IOException;
+
 import java.util.*;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import reactor.core.publisher.Flux;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,18 +29,17 @@ import com.shuaib.oopcw.models.Vendor;
 
 import com.shuaib.oopcw.functions.CustomerFunction;
 import com.shuaib.oopcw.functions.VendorFunction;
-
+import com.shuaib.oopcw.logs.LogsHelper;
 import com.shuaib.oopcw.synchronized_ticketpool.TicketPool;
+
 
 @SpringBootApplication
 @CrossOrigin
 @RestController
 public class OopcwApplication {
-	
-	public static final Logger logger = LogManager.getLogger("GLOBAL");
 
-	public static final VendorFunction vendorFunction = new VendorFunction();
-	public static final CustomerFunction customerFunction = new CustomerFunction();
+	public static final VendorFunction vendorFunction = VendorFunction.getInstance();
+	public static final CustomerFunction customerFunction = CustomerFunction.getInstance();
 
 	public static final Configuration config = Configuration.getInstance();
 
@@ -175,4 +178,10 @@ public class OopcwApplication {
 			return new ResponseEntity<>("Customer does not exist", HttpStatus.BAD_REQUEST);
 		}
 	}
+
+	@GetMapping(path="/logs", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+	public Flux<String> getLogs() throws IOException{
+		return LogsHelper.getInstance().getLogsSink();
+	}
+
 }
