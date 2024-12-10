@@ -1,33 +1,61 @@
-import { NgIf } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-log-display',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, NgFor],
   templateUrl: './log-display.component.html',
-  styles: []
+  styles: [],
 })
-export class LogDisplayComponent implements OnInit{
-  logs: String[] = [];
-  noLogs:boolean = false;
-  http: HttpClient;
+export class LogDisplayComponent implements OnInit {
+  @ViewChild('display')
+  latestLog!: ElementRef;
+  logs: String[];
+  noLogs: boolean;
 
-  constructor(http: HttpClient) {
-    this.http = http;
+  constructor(private host: AppComponent) {
+    this.logs = [];
+    this.noLogs = false;
   }
 
   async ngOnInit(): Promise<void> {
     this.loadLogs(true);
-    setInterval(() => this.loadLogs(false), 1000);
   }
 
-  loadLogs(initial:boolean): void {
+  ngAfterViewChecked() {
+    this.autoScroll();
+  }
+
+  async loadLogs(initial: boolean): Promise<void> {
     if (initial) this.noLogs = true;
-    this.http.get<String[]>("http://localhost:8080/logs").subscribe((logs) => {
-      this.logs = logs;
-      this.noLogs = false;
-    })
+    this.host.client
+      .get('/logs', {
+        responseType: 'stream',
+        adapter: 'fetch',
+      })
+      .then(async (response) => {
+        const stream = response.data;
+        this.noLogs = false;
+
+        const reader = stream.pipeThrough(new TextDecoderStream()).getReader();
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) {
+            console.log('done');
+            break;
+          }
+          if (value != '' && value != 'data:') {
+            this.logs.push(value.replace('data:', ''));
+            console.log(value);
+          }
+        }
+      });
+  }
+
+  autoScroll(): void {
+    this.latestLog.nativeElement.scrollTop =
+      this.latestLog.nativeElement.scrollHeight;
   }
 }
