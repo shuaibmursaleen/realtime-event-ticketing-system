@@ -3,7 +3,7 @@ package com.shuaib.oopcw.models;
 import java.util.Random;
 
 import com.shuaib.oopcw.config.Configuration;
-import com.shuaib.oopcw.logs.LogsHelper;
+import com.shuaib.oopcw.eventstreams.LogStream;
 import com.shuaib.oopcw.synchronized_ticketpool.TicketPool;
 
 public class Vendor implements Runnable {
@@ -34,11 +34,11 @@ public class Vendor implements Runnable {
             while (true) {
                 config.vendorWaitTillRunning(this);
                 ticketPool.addTicket(this); 
-                LogsHelper.getInstance().addLog(String.format("Vendor %d released %d tickets.", this.vendorId, this.ticketsPerRelease));
+                LogStream.getInstance().addEvent(String.format("Vendor %d released %d tickets.", this.vendorId, this.ticketsPerRelease));
                 Thread.sleep(config.getTicketReleaseRate());
             }
         } catch (InterruptedException e) {
-            LogsHelper.getInstance().addLog(String.format("Vendor %d Interrupted", this.vendorId));
+            LogStream.getInstance().addEvent(String.format("Vendor %d Interrupted", this.vendorId));
             Thread.currentThread().interrupt();
         }
     }

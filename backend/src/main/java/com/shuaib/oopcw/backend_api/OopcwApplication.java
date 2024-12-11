@@ -1,10 +1,12 @@
 package com.shuaib.oopcw.backend_api;
 
 import java.io.IOException;
-
+import java.time.Duration;
 import java.util.*;
 
+import reactor.core.Disposable;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,13 +25,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.shuaib.oopcw.config.Configuration;
-
+import com.shuaib.oopcw.eventstreams.LogStream;
 import com.shuaib.oopcw.models.Customer;
 import com.shuaib.oopcw.models.Vendor;
 
 import com.shuaib.oopcw.functions.CustomerFunction;
 import com.shuaib.oopcw.functions.VendorFunction;
-import com.shuaib.oopcw.logs.LogsHelper;
 import com.shuaib.oopcw.synchronized_ticketpool.TicketPool;
 
 
@@ -54,9 +55,10 @@ public class OopcwApplication {
 		response.put("ticket_release_rate", config.getTicketReleaseRate());
 		response.put("customer_retrieval_rate", config.getCustomerRetrievalRate());
 		response.put("max_ticket_capacity", config.getMaxTicketCapacity());
+		response.put("status", config.getRunStatus());
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
-
+	
     @PostMapping("/configuration")
 	public ResponseEntity<?> setConfiguration(@RequestBody HashMap<String, Object> body) {
 		if (body.containsKey("load_config")) config.loadConfigJson("./src/main/resources/config.json");
@@ -66,6 +68,7 @@ public class OopcwApplication {
 		if (body.containsKey("customer_retrieval_rate")) config.setCustomerRetrievalRate((int)body.get("customer_retrieval_rate"));
 		if (body.containsKey("max_ticket_capacity")) config.setMaxTicketCapacity((int)body.get("max_ticket_capacity"));
 		config.saveConfigJson("./src/main/resources/config.json");
+		LogStream.getInstance().addEvent("Configuration has been updated successfully");
 		return new ResponseEntity<>(body, HttpStatus.OK);
 	}
 
@@ -76,7 +79,7 @@ public class OopcwApplication {
 
 	@GetMapping("/vendors")
 	public ResponseEntity<?> getVendors() {
-		return new ResponseEntity<>(vendorFunction.getVendors(), HttpStatus.OK);
+		return new ResponseEntity<>(vendorFunction.getVendors().values(), HttpStatus.OK);
 	}
 
     @PostMapping("/vendors")
@@ -90,7 +93,7 @@ public class OopcwApplication {
 
 		if (body.containsKey("release_interval")) {
 			releaseInterval = (int) body.get("release_interval");
-		}
+		}	
 		else return new ResponseEntity<>("Release Interval is needed!", HttpStatus.BAD_REQUEST);
 
 		Vendor vendor = new Vendor(ticketsPerRelease, releaseInterval);
@@ -98,6 +101,7 @@ public class OopcwApplication {
 		Thread thread = new Thread(vendor,"Vendor:" + String.valueOf(vendor.getVendorId()));
 		vendorFunction.addVendorThread(vendor.getVendorId(), thread);
 		thread.start();
+		LogStream.getInstance().addEvent(String.format("Vendor %d has been added to the system successfully",vendor.getVendorId()));
 		return new ResponseEntity<>(vendor, HttpStatus.OK);
 	}
 
@@ -106,12 +110,15 @@ public class OopcwApplication {
 		if (body.containsKey("status")) {
 			if ((boolean) body.get("status")) {
 				vendorFunction.setVendorStatus(vendorId, true);
+				LogStream.getInstance().addEvent(String.format("Vendor %d has been started successfully",vendorId));
 				return new ResponseEntity<>("Vendor started", HttpStatus.OK);
 			}
 			else {
 				vendorFunction.setVendorStatus(vendorId, false);
+				LogStream.getInstance().addEvent(String.format("Vendor %d has been stopped successfully",vendorId));
 				return new ResponseEntity<>("Vendor stopped", HttpStatus.OK);
 			}
+
 		}
 		else {
 			return new ResponseEntity<>("status required!", HttpStatus.BAD_REQUEST);
@@ -122,17 +129,17 @@ public class OopcwApplication {
     public ResponseEntity<?> deleteVendor(@PathVariable int vendorId) {
 		if (vendorFunction.getVendors().containsKey(vendorId)) {
 			vendorFunction.removeVendor(vendorId);
+			LogStream.getInstance().addEvent(String.format("Vendor %d has been removed successfully",vendorId));
 			return new ResponseEntity<>("Vendor removed successfully", HttpStatus.OK);
 		}
 		else {
 			return new ResponseEntity<>("Vendor doesn't exist", HttpStatus.BAD_REQUEST);
 		}
-
     }
 
 	@GetMapping("/customers")
 	public ResponseEntity<?> getCustomers() {
-		return new ResponseEntity<>(customerFunction.getCustomers(), HttpStatus.OK);
+		return new ResponseEntity<>(customerFunction.getCustomers().values(), HttpStatus.OK);
 	}
 
 	@PostMapping("customers")
@@ -148,6 +155,7 @@ public class OopcwApplication {
 		Thread thread = new Thread(customer, "Customer:" + String.valueOf(customer.getCustomerId()));
 		customerFunction.addCustomerThread(customer.getCustomerId(), thread);
 		thread.start();
+		LogStream.getInstance().addEvent(String.format("Vendor %d has been added to the system successfully", customer.getCustomerId()));
 		return new ResponseEntity<>(customer, HttpStatus.OK);
 	}
 
@@ -156,10 +164,12 @@ public class OopcwApplication {
 		if (body.containsKey("status")) {
 			if ((boolean) body.get("status")) {
 				customerFunction.setCustomerStatus(customerId, true);
+				LogStream.getInstance().addEvent(String.format("Vendor %d has been started successfully", customerId));
 				return new ResponseEntity<>("Customer started successfully", HttpStatus.OK);
 			}
 			else {
 				customerFunction.setCustomerStatus(customerId, false);
+				LogStream.getInstance().addEvent(String.format("Vendor %d has been added to the system successfully", customerId));
 				return new ResponseEntity<>("Customer stopped successfully", HttpStatus.OK);
 			}
 		}
@@ -172,6 +182,7 @@ public class OopcwApplication {
 	public ResponseEntity<?> deleteCustomer(@PathVariable int customerId) {
 		if (customerFunction.getCustomers().containsKey(customerId)) {
 			customerFunction.removeCustomer(customerId);
+			LogStream.getInstance().addEvent(String.format("Customer %d has been added to the system successfully", customerId));
 			return new ResponseEntity<>("Customer removed successfully", HttpStatus.OK);
 		}
 		else {
@@ -180,8 +191,16 @@ public class OopcwApplication {
 	}
 
 	@GetMapping(path="/logs", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-	public Flux<String> getLogs() throws IOException{
-		return LogsHelper.getInstance().getLogsSink();
+	public Flux<String> getLogs(){
+		return LogStream.getInstance()
+            .getStream()
+            .onErrorResume(error -> {
+                LogStream.getInstance().getLogger().error("Error in log stream: {}", error.getMessage());
+                return Flux.empty();
+            })
+            .doOnCancel(() -> {
+                LogStream.getInstance().getLogger().info("Client disconnected from /logs");
+            });
 	}
 
 }

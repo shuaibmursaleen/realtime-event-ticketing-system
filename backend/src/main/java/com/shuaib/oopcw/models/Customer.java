@@ -4,7 +4,7 @@ import java.util.Random;
 
 
 import com.shuaib.oopcw.config.Configuration;
-import com.shuaib.oopcw.logs.LogsHelper;
+import com.shuaib.oopcw.eventstreams.LogStream;
 import com.shuaib.oopcw.synchronized_ticketpool.TicketPool;
 
 public class Customer implements Runnable {
@@ -27,11 +27,11 @@ public class Customer implements Runnable {
             while (true) {
                 Configuration.getInstance().customerWaitTillRunning(this);
                 TicketPool.getInstance().removeTicket();
-                LogsHelper.getInstance().addLog(String.format("Customer %d removed a ticket.", this.customerId));
+                LogStream.getInstance().addEvent(String.format("Customer %d removed a ticket.", this.customerId));
                 Thread.sleep(this.retrievalInterval);
                 }          
         } catch (InterruptedException e) {
-            LogsHelper.getInstance().addLog(String.format("Customer %d Interrupted", this.customerId));
+            LogStream.getInstance().addEvent(String.format("Customer %d Interrupted", this.customerId));
             Thread.currentThread().interrupt();
         }
     }

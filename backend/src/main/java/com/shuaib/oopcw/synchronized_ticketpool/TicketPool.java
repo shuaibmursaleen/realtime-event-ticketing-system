@@ -3,7 +3,7 @@ package com.shuaib.oopcw.synchronized_ticketpool;
 import java.util.List;
 
 import com.shuaib.oopcw.config.Configuration;
-import com.shuaib.oopcw.logs.LogsHelper;
+import com.shuaib.oopcw.eventstreams.LogStream;
 import com.shuaib.oopcw.models.Ticket;
 import com.shuaib.oopcw.models.Vendor;
 
@@ -46,15 +46,15 @@ public class TicketPool {
             for (int i = 0; i < vendor.getTicketsPerRelease(); i++) {
                 Ticket ticket = new Ticket(vendor.getVendorId());
                 while (this.ticketCount >= Configuration.getInstance().getTotalTickets()) {
-                    LogsHelper.getInstance().addLog("Total producable tickets reached");
+                    LogStream.getInstance().addEvent("Total producable tickets reached");
                     waitForSpace();
                 }
                 while (tickets.size() >= Configuration.getInstance().getMaxTicketCapacity()) {
-                    LogsHelper.getInstance().addLog(String.format("Pool is full. Ticket %d waiting to be added.", ticket.getTicketId()));
+                    LogStream.getInstance().addEvent(String.format("Pool is full. Ticket %d waiting to be added.", ticket.getTicketId()));
                     waitForSpace();
                 }
                 tickets.add(ticket);
-                LogsHelper.getInstance().addLog(String.format("Ticket %d was added to the pool, current Ticket count is %d.", ticket.getTicketId(), tickets.size()));
+                LogStream.getInstance().addEvent(String.format("Ticket %d was added to the pool, current Ticket count is %d.", ticket.getTicketId(), tickets.size()));
                 Thread.sleep(vendor.getReleaseInterval());
                 ticketCount++;
             }
@@ -70,10 +70,10 @@ public class TicketPool {
         try {
             Thread.sleep(500);
             while (tickets.isEmpty()) {
-                LogsHelper.getInstance().addLog("No tickets available. Waiting to be removed.");
+                LogStream.getInstance().addEvent("No tickets available. Waiting to be removed.");
                 wait();
             }
-            LogsHelper.getInstance().addLog(String.format("Ticket %d was removed from the pool.", tickets.get(0).getTicketId()));
+            LogStream.getInstance().addEvent(String.format("Ticket %d was removed from the pool.", tickets.get(0).getTicketId()));
             tickets.remove(0);
             Thread.sleep(500);
             notifyAll();
