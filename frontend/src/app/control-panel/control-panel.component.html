@@ -1,0 +1,20 @@
+<main class="flex flex-col min-h-dvh place-items-center justify-center gap-4">
+  <h1 *ngIf="this.status" class="md:text-4xl text-2xl font-semibold p-4">
+    System Status: Running
+  </h1>
+  <h1 *ngIf="!this.status" class="md:text-4xl text-2xl font-semibold p-4">
+    System Status: Stopped
+  </h1>
+  <label class="relative inline-flex items-center cursor-pointer">
+    <input
+      [checked]="status"
+      (change)="setStatus(!status)"
+      type="checkbox"
+      value=""
+      class="sr-only peer"
+    />
+    <div
+      class="group peer ring-0 bg-rose-400 rounded-full outline-none duration-300 after:duration-300 w-48 h-24 shadow-md peer-checked:bg-emerald-500 peer-focus:outline-none after:rounded-full after:absolute after:bg-gray-50 after:outline-none after:h-20 after:w-20 after:top-2 after:left-2 after:flex after:justify-center after:items-center peer-checked:after:translate-x-24 peer-hover:after:scale-95"
+    ></div>
+  </label>
+</main>

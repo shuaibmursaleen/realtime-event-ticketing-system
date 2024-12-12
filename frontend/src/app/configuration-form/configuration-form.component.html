@@ -19,6 +19,7 @@
           name="ticketReleaseRate"
           class="border rounded-lg h-9 px-3 focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-800 font-medium text-center"
           value="{{ config.ticket_release_rate }}"
+          minlength="3"
         />
       </div>
       <div class="flex items-center justify-between">
@@ -30,7 +31,8 @@
           [(ngModel)]="customerRetrievalRate"
           name="customerRetrievalRate"
           class="border rounded-lg h-9 px-3 focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-800 font-medium text-center"
-          value="{{ config.customer_retrieval_rate }}"
+          value="{{ this.config.customer_retrieval_rate }}"
+          minlength="3"
         />
       </div>
       <div class="flex items-center justify-between">

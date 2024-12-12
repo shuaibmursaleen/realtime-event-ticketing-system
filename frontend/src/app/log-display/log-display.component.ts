@@ -42,13 +42,10 @@ export class LogDisplayComponent implements OnInit {
         const reader = stream.pipeThrough(new TextDecoderStream()).getReader();
         while (true) {
           const { value, done } = await reader.read();
-          if (done) {
-            console.log('done');
-            break;
-          }
-          if (value != '' && value != 'data:') {
+          if (value == 'data:' || value == '' || value == ' ') {
+            continue;
+          } else {
             this.logs.push(value.replace('data:', ''));
-            console.log(value);
           }
         }
       });

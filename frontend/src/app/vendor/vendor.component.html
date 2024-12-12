@@ -1,19 +1,130 @@
-<main class="min-h-dvh grid place-items-center">
-  <div class="flex flex-col bg-zinc-200 rounded-lg gap-4 p-4">
-    <h1 class="text-lg font-medium">Add Vendor</h1>
-    <form class="flex flex-col gap-2">
-      <label class="text-base font-medium">Tickets Per Release</label>
-      <input
-        class="border rounded-lg h-9 px-3 focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-800 font-medium text-center"
-      />
+<main class="min-h-dvh flex flex-col lg:flex-row">
+  <!-- Add Vendor Section -->
+  <div
+    class="flex w-full lg:w-2/5 items-center justify-center p-4 place-items-center"
+  >
+    <div
+      class="flex flex-col bg-zinc-200 rounded-lg gap-4 p-4 w-3/4 md:w-5/12 lg:w-4/6"
+    >
+      <h1 class="text-lg font-medium text-center">Add Vendor</h1>
+      <form class="flex flex-col gap-2">
+        <label class="text-base font-medium">Tickets Per Release</label>
+        <input
+          type="number"
+          [(ngModel)]="ticketsPerRelease"
+          name="ticketsPerRelease"
+          class="border rounded-lg h-9 px-3 focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-800 font-medium text-center"
+        />
 
-      <label class="text-base font-medium">Release Interval</label>
-      <input
-        class="border rounded-lg h-9 px-3 focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-800 font-medium text-center"
-      />
-    </form>
-    <button class="bg-black text-white rounded-lg text-sm font-medium h-9 px-3">
-      Add
-    </button>
+        <label class="text-base font-medium">Release Interval</label>
+        <input
+          type="number"
+          [(ngModel)]="releaseInterval"
+          name="releaseInterval"
+          class="border rounded-lg h-9 px-3 focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-800 font-medium text-center"
+        />
+      </form>
+      <button
+        (click)="setVendor(ticketsPerRelease, releaseInterval)"
+        type="submit"
+        class="bg-black text-white rounded-lg text-sm font-medium h-9 px-3"
+      >
+        Add
+      </button>
+    </div>
+  </div>
+
+  <!-- Vendor List Section -->
+  <div
+    class="flex flex-col w-full md:w-full lg:w-4/6 min-h-dvh items-center p-4 justify-center"
+  >
+    <div class="flex flex-col w-full md:w-auto">
+      <h1 class="text-lg font-semibold p-4 text-center">
+        Current Vendor Count: {{ vendors.length }}
+      </h1>
+
+      <!-- No Vendors Placeholder -->
+      <div *ngIf="!vendors.length" class="flex flex-col items-center gap-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="size-6 text-zinc-400"
+        >
+          <rect width="20" height="5" x="2" y="3" rx="1" />
+          <path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8" />
+          <path d="m9.5 17 5-5" />
+          <path d="m9.5 12 5 5" />
+        </svg>
+        <p class="text-zinc-400 text-sm text-center">No Vendors available</p>
+      </div>
+
+      <!-- Vendor Cards -->
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-h-96 overflow-y-scroll"
+      >
+        <div
+          *ngFor="let vendor of vendors"
+          class="bg-zinc-200 rounded-lg p-4 flex flex-col gap-2"
+        >
+          <p class="text-base font-medium">Vendor ID: {{ vendor.vendorId }}</p>
+          <p class="text-base font-medium">
+            Tickets Per Release: {{ vendor.ticketsPerRelease }}
+          </p>
+          <p class="text-base font-medium">
+            Release Interval: {{ vendor.releaseInterval }}
+          </p>
+          <p *ngIf="vendor.runStatus" class="text-base font-medium">
+            Status: Active
+          </p>
+          <p *ngIf="!vendor.runStatus" class="text-base font-medium">
+            Status: Stopped
+          </p>
+          <div class="flex justify-between">
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input
+                [checked]="vendor.runStatus"
+                (change)="toggleVendor(vendor.vendorId, !vendor.runStatus)"
+                type="checkbox"
+                value=""
+                class="sr-only peer"
+              />
+              <div
+                class="group peer ring-0 bg-rose-400 rounded-full outline-none duration-300 after:duration-300 w-12 h-6 shadow-md peer-checked:bg-emerald-500 peer-focus:outline-none after:rounded-full after:absolute after:bg-gray-50 after:outline-none after:h-5 after:w-5 after:top-0.5 after:left-0.5 after:flex after:justify-center after:items-center peer-checked:after:translate-x-6 peer-hover:after:scale-75"
+              ></div>
+            </label>
+
+            <button
+              class="text-red-600"
+              (click)="removeVendor(vendor.vendorId)"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 6h18" />
+                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                <line x1="10" x2="10" y1="11" y2="17" />
+                <line x1="14" x2="14" y1="11" y2="17" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </main>

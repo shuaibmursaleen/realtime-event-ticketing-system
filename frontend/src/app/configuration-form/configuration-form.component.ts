@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
 
 interface Configuration {
@@ -7,6 +7,7 @@ interface Configuration {
   ticket_release_rate: number;
   customer_retrieval_rate: number;
   max_ticket_capacity: number;
+  status: boolean;
 }
 
 @Component({
@@ -19,10 +20,10 @@ interface Configuration {
 export class ConfigurationFormComponent implements OnInit {
   config: Configuration;
 
-  totalTickets: number;
-  ticketReleaseRate: number;
-  customerRetrievalRate: number;
-  maxTicketCapacity: number;
+  totalTickets!: number;
+  ticketReleaseRate!: number;
+  customerRetrievalRate!: number;
+  maxTicketCapacity!: number;
 
   constructor(private host: AppComponent) {
     this.config = {
@@ -30,11 +31,8 @@ export class ConfigurationFormComponent implements OnInit {
       ticket_release_rate: 0,
       customer_retrieval_rate: 0,
       max_ticket_capacity: 0,
+      status: false,
     };
-    this.totalTickets = 0;
-    this.ticketReleaseRate = 0;
-    this.customerRetrievalRate = 0;
-    this.maxTicketCapacity = 0;
   }
 
   async ngOnInit(): Promise<void> {
@@ -45,13 +43,9 @@ export class ConfigurationFormComponent implements OnInit {
     try {
       const response = await this.host.client.get('/configuration');
       this.config = response.data;
+      console.log(this.config.total_tickets);
     } catch (error) {
-      this.config = {
-        total_tickets: 0,
-        ticket_release_rate: 0,
-        customer_retrieval_rate: 0,
-        max_ticket_capacity: 0,
-      };
+      console.log(error);
     }
   }
 
@@ -61,12 +55,6 @@ export class ConfigurationFormComponent implements OnInit {
     customer_retrieval_rate: number,
     max_ticket_capacity: number
   ): Promise<void> {
-    console.log(
-      total_tickets,
-      ticket_release_rate,
-      customer_retrieval_rate,
-      max_ticket_capacity
-    );
     this.host.client.post('/configuration', {
       total_tickets: total_tickets,
       ticket_release_rate: ticket_release_rate,

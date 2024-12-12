@@ -1,5 +1,30 @@
-<a routerLink="/config" class="space-x-3">Config</a>
-<a routerLink="/ticket-display">Tickets</a>
-<a routerLink="/log-display">Logs</a>
-<a routerLink="/vendors">Vendor</a>
-<router-outlet></router-outlet>
+<main class="min flex flex-col p-2">
+  <router-outlet>
+    <div
+      class="flex text-center text-base font-semibold w-fit border px-1 py-1 border-black rounded-lg"
+    >
+      <a routerLink="/" class="hover:bg-zinc-200 px-3 py-2 rounded-lg"
+        >Control</a
+      >
+      <a
+        routerLink="/ticket-display"
+        class="hover:bg-zinc-200 px-3 py-2 rounded-lg"
+        >Tickets</a
+      >
+      <a routerLink="/vendors" class="hover:bg-zinc-200 px-3 py-2 rounded-lg"
+        >Vendor</a
+      >
+      <a routerLink="/customers" class="hover:bg-zinc-200 px-3 py-2 rounded-lg"
+        >Customer</a
+      >
+      <a routerLink="/config" class="hover:bg-zinc-200 px-3 py-2 rounded-lg"
+        >Config</a
+      >
+      <a
+        routerLink="/log-display"
+        class="hover:bg-zinc-200 px-3 py-2 rounded-lg"
+        >Logs</a
+      >
+    </div>
+  </router-outlet>
+</main>

@@ -16,24 +16,19 @@ interface Ticket {
 })
 export class TicketDisplayComponent implements OnInit {
   tickets: Ticket[];
-  isTicketsLoading: boolean;
 
   constructor(private host: AppComponent) {
     this.tickets = [];
-    this.isTicketsLoading = true;
   }
 
   async ngOnInit(): Promise<void> {
-    this.loadTickets(true);
-    setInterval(() => this.loadTickets(), 1000);
+    setInterval(() => this.getTickets(), 1000);
   }
 
-  async loadTickets(initial: boolean = false): Promise<void> {
+  async getTickets(): Promise<void> {
     try {
-      if (initial) this.isTicketsLoading = true;
       const response = await this.host.client.get('/tickets');
       this.tickets = response.data;
-      this.isTicketsLoading = false;
     } catch (error) {
       this.tickets = [];
     }

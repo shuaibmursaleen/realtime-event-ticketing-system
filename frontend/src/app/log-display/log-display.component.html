@@ -2,7 +2,7 @@
   <h1 class="text-lg font-medium text-left">Application Logs</h1>
   <div
     #display
-    class="flex flex-col h-96 max-w-5xl w-full bg-zinc-50 rounded-lg gap-2 p-2 border overflow-y-scroll"
+    class="flex flex-col h-96 max-w-xl md:max-w-5xl w-full bg-zinc-50 rounded-lg gap-2 p-2 border overflow-y-scroll"
   >
     <div
       *ngIf="noLogs"
@@ -32,7 +32,10 @@
       </svg>
       <p class="text-sm font-normal text-zinc-400">No Logs Available</p>
     </div>
-    <p *ngFor="let log of logs; let i = index" class="text-sm font-medium">
+    <p
+      *ngFor="let log of logs; let i = index"
+      class="text-sm font-base font-mono"
+    >
       {{ log }}
     </p>
   </div>
