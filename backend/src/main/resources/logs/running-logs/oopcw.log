@@ -1,20 +1,353 @@
-2024-12-12 02:25:24 Configuration has been updated successfully
-2024-12-12 02:25:27 Vendor 9072 has been added to the system successfully
-2024-12-12 02:25:28 Ticket 1957 was added to the pool, current Ticket count is 1.
-2024-12-12 02:25:31 Ticket 2754 was added to the pool, current Ticket count is 2.
-2024-12-12 02:25:34 Vendor 9072 released 2 tickets.
-2024-12-12 02:25:37 Ticket 8981 was added to the pool, current Ticket count is 3.
-2024-12-12 02:25:40 Ticket 6832 was added to the pool, current Ticket count is 4.
-2024-12-12 02:25:44 Vendor 9072 released 2 tickets.
-2024-12-12 02:25:44 Client disconnected from /logs
-2024-12-12 02:25:44 Client disconnected from log stream
-2024-12-12 02:25:46 Ticket 7040 was added to the pool, current Ticket count is 5.
-2024-12-12 02:25:49 Ticket 2250 was added to the pool, current Ticket count is 6.
-2024-12-12 02:25:53 Vendor 9072 released 2 tickets.
-2024-12-12 02:25:55 Ticket 4743 was added to the pool, current Ticket count is 7.
-2024-12-12 02:25:58 Ticket 4460 was added to the pool, current Ticket count is 8.
-2024-12-12 02:26:02 Vendor 9072 released 2 tickets.
-2024-12-12 02:26:04 Ticket 1611 was added to the pool, current Ticket count is 9.
-2024-12-12 02:26:07 Ticket 4206 was added to the pool, current Ticket count is 10.
-2024-12-12 02:26:11 Vendor 9072 released 2 tickets.
-2024-12-12 02:26:13 Ticket 4443 was added to the pool, current Ticket count is 11.
+2024-12-12 12:48:54 Configuration has been updated successfully
+2024-12-12 12:49:30 Vendor 6536 has been added to the system successfully
+2024-12-12 12:49:31 Ticket 4154 was added to the pool, current Ticket count is 1.
+2024-12-12 12:49:33 Ticket 8377 was added to the pool, current Ticket count is 2.
+2024-12-12 12:49:35 Vendor 6536 released 2 tickets.
+2024-12-12 12:49:39 Ticket 1030 was added to the pool, current Ticket count is 3.
+2024-12-12 12:49:41 Ticket 9035 was added to the pool, current Ticket count is 4.
+2024-12-12 12:49:43 Vendor 6536 released 2 tickets.
+2024-12-12 12:49:47 Ticket 720 was added to the pool, current Ticket count is 5.
+2024-12-12 12:49:47 Vendor 6536 has been stopped successfully
+2024-12-12 12:49:49 Ticket 1608 was added to the pool, current Ticket count is 6.
+2024-12-12 12:49:51 Vendor 6536 released 2 tickets.
+2024-12-12 12:50:01 Vendor 6536 has been started successfully
+2024-12-12 12:50:01 Ticket 5428 was added to the pool, current Ticket count is 7.
+2024-12-12 12:50:03 Vendor 6536 has been stopped successfully
+2024-12-12 12:50:03 Ticket 9865 was added to the pool, current Ticket count is 8.
+2024-12-12 12:50:06 Vendor 6536 released 2 tickets.
+2024-12-12 12:50:10 Vendor 6536 Interrupted
+2024-12-12 12:50:10 Vendor 6536 has been removed successfully
+2024-12-12 12:50:40 Customer 5352 has been added to the system successfully
+2024-12-12 12:50:40 Ticket 4154 was removed from the pool.
+2024-12-12 12:50:41 Customer 5352 removed a ticket.
+2024-12-12 12:50:43 Ticket 8377 was removed from the pool.
+2024-12-12 12:50:44 Customer 5352 removed a ticket.
+2024-12-12 12:50:46 Ticket 1030 was removed from the pool.
+2024-12-12 12:50:47 Customer 5352 removed a ticket.
+2024-12-12 12:50:49 Customer 5352 has been stopped successfully
+2024-12-12 12:50:56 Customer 5352 has been removed successfully
+2024-12-12 12:50:56 Customer 5352 Interrupted
+2024-12-12 12:51:21 Vendor 1200 has been added to the system successfully
+2024-12-12 12:51:21 Ticket 5895 was added to the pool, current Ticket count is 6.
+2024-12-12 12:51:23 Ticket 6853 was added to the pool, current Ticket count is 7.
+2024-12-12 12:51:26 Vendor 1200 released 2 tickets.
+2024-12-12 12:51:29 Ticket 5040 was added to the pool, current Ticket count is 8.
+2024-12-12 12:51:31 Ticket 2679 was added to the pool, current Ticket count is 9.
+2024-12-12 12:51:34 Vendor 1200 released 2 tickets.
+2024-12-12 12:51:37 Ticket 1080 was added to the pool, current Ticket count is 10.
+2024-12-12 12:51:39 Pool is full. Ticket 8124 waiting to be added.
+2024-12-12 12:51:52 Customer 9006 has been added to the system successfully
+2024-12-12 12:51:52 Ticket 9035 was removed from the pool.
+2024-12-12 12:51:53 Customer 7188 has been added to the system successfully
+2024-12-12 12:51:53 Ticket 8124 was added to the pool, current Ticket count is 10.
+2024-12-12 12:51:53 Customer 9006 removed a ticket.
+2024-12-12 12:51:53 Customer 4630 has been added to the system successfully
+2024-12-12 12:51:55 Vendor 1200 released 2 tickets.
+2024-12-12 12:51:56 Ticket 720 was removed from the pool.
+2024-12-12 12:51:56 Customer 9006 removed a ticket.
+2024-12-12 12:51:57 Ticket 1608 was removed from the pool.
+2024-12-12 12:51:57 Customer 4630 removed a ticket.
+2024-12-12 12:51:58 Ticket 5428 was removed from the pool.
+2024-12-12 12:51:58 Customer 7188 removed a ticket.
+2024-12-12 12:51:59 Ticket 9865 was removed from the pool.
+2024-12-12 12:51:59 Customer 4630 removed a ticket.
+2024-12-12 12:52:00 Ticket 1706 was added to the pool, current Ticket count is 7.
+2024-12-12 12:52:02 Ticket 4029 was added to the pool, current Ticket count is 8.
+2024-12-12 12:52:04 Vendor 1200 released 2 tickets.
+2024-12-12 12:52:05 Ticket 5895 was removed from the pool.
+2024-12-12 12:52:05 Customer 9006 removed a ticket.
+2024-12-12 12:52:06 Ticket 6853 was removed from the pool.
+2024-12-12 12:52:06 Customer 4630 removed a ticket.
+2024-12-12 12:52:07 Ticket 5040 was removed from the pool.
+2024-12-12 12:52:07 Customer 9006 removed a ticket.
+2024-12-12 12:52:08 Ticket 2679 was removed from the pool.
+2024-12-12 12:52:08 Customer 7188 removed a ticket.
+2024-12-12 12:52:09 Ticket 1080 was removed from the pool.
+2024-12-12 12:52:09 Customer 9006 removed a ticket.
+2024-12-12 12:52:10 Ticket 8124 was removed from the pool.
+2024-12-12 12:52:10 Customer 4630 removed a ticket.
+2024-12-12 12:52:11 Ticket 1706 was removed from the pool.
+2024-12-12 12:52:11 Customer 9006 removed a ticket.
+2024-12-12 12:52:12 Ticket 3747 was added to the pool, current Ticket count is 2.
+2024-12-12 12:52:14 Ticket 5163 was added to the pool, current Ticket count is 3.
+2024-12-12 12:52:17 Vendor 1200 released 2 tickets.
+2024-12-12 12:52:17 Ticket 4029 was removed from the pool.
+2024-12-12 12:52:18 Customer 9006 removed a ticket.
+2024-12-12 12:52:18 Ticket 3747 was removed from the pool.
+2024-12-12 12:52:19 Customer 4630 removed a ticket.
+2024-12-12 12:52:19 Ticket 5163 was removed from the pool.
+2024-12-12 12:52:20 Customer 9006 removed a ticket.
+2024-12-12 12:52:20 No tickets available. Waiting to be removed.
+2024-12-12 12:52:21 No tickets available. Waiting to be removed.
+2024-12-12 12:52:21 Ticket 4875 was added to the pool, current Ticket count is 1.
+2024-12-12 12:52:23 Ticket 420 was added to the pool, current Ticket count is 2.
+2024-12-12 12:52:26 Ticket 4875 was removed from the pool.
+2024-12-12 12:52:26 Vendor 1200 released 2 tickets.
+2024-12-12 12:52:26 Ticket 420 was removed from the pool.
+2024-12-12 12:52:26 Customer 7188 removed a ticket.
+2024-12-12 12:52:27 Customer 4630 removed a ticket.
+2024-12-12 12:52:27 No tickets available. Waiting to be removed.
+2024-12-12 12:52:28 No tickets available. Waiting to be removed.
+2024-12-12 12:52:28 No tickets available. Waiting to be removed.
+2024-12-12 12:52:29 Ticket 2225 was added to the pool, current Ticket count is 1.
+2024-12-12 12:52:31 Ticket 8715 was added to the pool, current Ticket count is 2.
+2024-12-12 12:52:34 Vendor 1200 released 2 tickets.
+2024-12-12 12:52:34 Ticket 2225 was removed from the pool.
+2024-12-12 12:52:34 Customer 9006 removed a ticket.
+2024-12-12 12:52:34 Ticket 8715 was removed from the pool.
+2024-12-12 12:52:35 No tickets available. Waiting to be removed.
+2024-12-12 12:52:35 Customer 4630 removed a ticket.
+2024-12-12 12:52:36 No tickets available. Waiting to be removed.
+2024-12-12 12:52:36 No tickets available. Waiting to be removed.
+2024-12-12 12:52:37 Ticket 5514 was added to the pool, current Ticket count is 1.
+2024-12-12 12:52:39 Ticket 8043 was added to the pool, current Ticket count is 2.
+2024-12-12 12:52:42 Ticket 5514 was removed from the pool.
+2024-12-12 12:52:42 Vendor 1200 released 2 tickets.
+2024-12-12 12:52:42 Ticket 8043 was removed from the pool.
+2024-12-12 12:52:42 Customer 7188 removed a ticket.
+2024-12-12 12:52:43 Customer 4630 removed a ticket.
+2024-12-12 12:52:43 No tickets available. Waiting to be removed.
+2024-12-12 12:52:44 No tickets available. Waiting to be removed.
+2024-12-12 12:52:44 No tickets available. Waiting to be removed.
+2024-12-12 12:52:45 Ticket 4872 was added to the pool, current Ticket count is 1.
+2024-12-12 12:52:45 Client disconnected from /logs
+2024-12-12 12:52:45 Client disconnected from log stream
+2024-12-12 12:52:47 Ticket 2587 was added to the pool, current Ticket count is 2.
+2024-12-12 12:52:50 Ticket 4872 was removed from the pool.
+2024-12-12 12:52:50 Vendor 1200 released 2 tickets.
+2024-12-12 12:52:50 Customer 9006 removed a ticket.
+2024-12-12 12:52:50 Ticket 2587 was removed from the pool.
+2024-12-12 12:52:51 No tickets available. Waiting to be removed.
+2024-12-12 12:52:51 Customer 4630 removed a ticket.
+2024-12-12 12:52:52 No tickets available. Waiting to be removed.
+2024-12-12 12:52:52 No tickets available. Waiting to be removed.
+2024-12-12 12:52:53 Ticket 5496 was added to the pool, current Ticket count is 1.
+2024-12-12 12:52:55 Ticket 6825 was added to the pool, current Ticket count is 2.
+2024-12-12 12:52:58 Ticket 5496 was removed from the pool.
+2024-12-12 12:52:58 Vendor 1200 released 2 tickets.
+2024-12-12 12:52:58 Ticket 6825 was removed from the pool.
+2024-12-12 12:52:58 Customer 7188 removed a ticket.
+2024-12-12 12:52:59 Customer 4630 removed a ticket.
+2024-12-12 12:52:59 No tickets available. Waiting to be removed.
+2024-12-12 12:53:00 No tickets available. Waiting to be removed.
+2024-12-12 12:53:00 No tickets available. Waiting to be removed.
+2024-12-12 12:53:01 Ticket 6367 was added to the pool, current Ticket count is 1.
+2024-12-12 12:53:03 Ticket 4865 was added to the pool, current Ticket count is 2.
+2024-12-12 12:53:06 Ticket 6367 was removed from the pool.
+2024-12-12 12:53:06 Vendor 1200 released 2 tickets.
+2024-12-12 12:53:06 Ticket 4865 was removed from the pool.
+2024-12-12 12:53:06 Customer 9006 removed a ticket.
+2024-12-12 12:53:07 No tickets available. Waiting to be removed.
+2024-12-12 12:53:07 Customer 4630 removed a ticket.
+2024-12-12 12:53:08 No tickets available. Waiting to be removed.
+2024-12-12 12:53:08 No tickets available. Waiting to be removed.
+2024-12-12 12:53:09 Ticket 577 was added to the pool, current Ticket count is 1.
+2024-12-12 12:53:11 Ticket 9826 was added to the pool, current Ticket count is 2.
+2024-12-12 12:53:14 Vendor 1200 released 2 tickets.
+2024-12-12 12:53:14 Ticket 577 was removed from the pool.
+2024-12-12 12:53:15 Customer 7188 removed a ticket.
+2024-12-12 12:53:15 Ticket 9826 was removed from the pool.
+2024-12-12 12:53:15 No tickets available. Waiting to be removed.
+2024-12-12 12:53:15 Customer 4630 removed a ticket.
+2024-12-12 12:53:16 No tickets available. Waiting to be removed.
+2024-12-12 12:53:17 No tickets available. Waiting to be removed.
+2024-12-12 12:53:18 Ticket 9750 was added to the pool, current Ticket count is 1.
+2024-12-12 12:53:20 Ticket 6501 was added to the pool, current Ticket count is 2.
+2024-12-12 12:53:22 Ticket 9750 was removed from the pool.
+2024-12-12 12:53:22 Vendor 1200 released 2 tickets.
+2024-12-12 12:53:23 Customer 9006 removed a ticket.
+2024-12-12 12:53:23 Ticket 6501 was removed from the pool.
+2024-12-12 12:53:23 Customer 4630 removed a ticket.
+2024-12-12 12:53:23 No tickets available. Waiting to be removed.
+2024-12-12 12:53:24 No tickets available. Waiting to be removed.
+2024-12-12 12:53:25 No tickets available. Waiting to be removed.
+2024-12-12 12:53:25 No tickets available. Waiting to be removed.
+2024-12-12 12:53:25 Configuration has been updated successfully
+2024-12-12 12:53:25 No tickets available. Waiting to be removed.
+2024-12-12 12:53:25 No tickets available. Waiting to be removed.
+2024-12-12 12:53:26 Ticket 6612 was added to the pool, current Ticket count is 1.
+2024-12-12 12:53:28 Ticket 7162 was added to the pool, current Ticket count is 2.
+2024-12-12 12:53:30 Vendor 1200 released 2 tickets.
+2024-12-12 12:53:30 Ticket 6612 was removed from the pool.
+2024-12-12 12:53:31 Customer 7188 removed a ticket.
+2024-12-12 12:53:31 Ticket 7162 was removed from the pool.
+2024-12-12 12:53:31 Customer 9006 removed a ticket.
+2024-12-12 12:53:31 No tickets available. Waiting to be removed.
+2024-12-12 12:53:32 No tickets available. Waiting to be removed.
+2024-12-12 12:53:33 Ticket 2541 was added to the pool, current Ticket count is 1.
+2024-12-12 12:53:35 Ticket 8367 was added to the pool, current Ticket count is 2.
+2024-12-12 12:53:37 Ticket 2541 was removed from the pool.
+2024-12-12 12:53:37 Vendor 1200 released 2 tickets.
+2024-12-12 12:53:38 Customer 4630 removed a ticket.
+2024-12-12 12:53:38 Ticket 8367 was removed from the pool.
+2024-12-12 12:53:38 Customer 7188 removed a ticket.
+2024-12-12 12:53:39 No tickets available. Waiting to be removed.
+2024-12-12 12:53:39 No tickets available. Waiting to be removed.
+2024-12-12 12:53:40 No tickets available. Waiting to be removed.
+2024-12-12 12:53:40 Ticket 4499 was added to the pool, current Ticket count is 1.
+2024-12-12 12:53:42 Ticket 5346 was added to the pool, current Ticket count is 2.
+2024-12-12 12:53:45 Ticket 4499 was removed from the pool.
+2024-12-12 12:53:45 Vendor 1200 released 2 tickets.
+2024-12-12 12:53:45 Customer 9006 removed a ticket.
+2024-12-12 12:53:45 Ticket 5346 was removed from the pool.
+2024-12-12 12:53:46 Customer 7188 removed a ticket.
+2024-12-12 12:53:46 No tickets available. Waiting to be removed.
+2024-12-12 12:53:47 No tickets available. Waiting to be removed.
+2024-12-12 12:53:47 No tickets available. Waiting to be removed.
+2024-12-12 12:53:48 Ticket 3089 was added to the pool, current Ticket count is 1.
+2024-12-12 12:53:50 Ticket 7138 was added to the pool, current Ticket count is 2.
+2024-12-12 12:53:52 Ticket 3089 was removed from the pool.
+2024-12-12 12:53:52 Vendor 1200 released 2 tickets.
+2024-12-12 12:53:53 Ticket 7138 was removed from the pool.
+2024-12-12 12:53:53 Customer 4630 removed a ticket.
+2024-12-12 12:53:53 No tickets available. Waiting to be removed.
+2024-12-12 12:53:53 Customer 7188 removed a ticket.
+2024-12-12 12:53:54 Vendor 3228 has been added to the system successfully
+2024-12-12 12:53:54 No tickets available. Waiting to be removed.
+2024-12-12 12:53:55 No tickets available. Waiting to be removed.
+2024-12-12 12:53:55 Ticket 493 was added to the pool, current Ticket count is 1.
+2024-12-12 12:53:57 Ticket 2130 was added to the pool, current Ticket count is 2.
+2024-12-12 12:54:00 Vendor 1200 released 2 tickets.
+2024-12-12 12:54:00 Ticket 1685 was added to the pool, current Ticket count is 3.
+2024-12-12 12:54:02 Ticket 7999 was added to the pool, current Ticket count is 4.
+2024-12-12 12:54:05 Vendor 3228 released 2 tickets.
+2024-12-12 12:54:05 Ticket 8224 was added to the pool, current Ticket count is 5.
+2024-12-12 12:54:07 Ticket 1038 was added to the pool, current Ticket count is 6.
+2024-12-12 12:54:10 Ticket 493 was removed from the pool.
+2024-12-12 12:54:10 Vendor 1200 released 2 tickets.
+2024-12-12 12:54:11 Ticket 2130 was removed from the pool.
+2024-12-12 12:54:11 Customer 7188 removed a ticket.
+2024-12-12 12:54:11 Customer 5366 has been added to the system successfully
+2024-12-12 12:54:11 Ticket 1685 was removed from the pool.
+2024-12-12 12:54:11 Customer 4630 removed a ticket.
+2024-12-12 12:54:12 Customer 9006 removed a ticket.
+2024-12-12 12:54:12 Ticket 7999 was removed from the pool.
+2024-12-12 12:54:13 Customer 7188 removed a ticket.
+2024-12-12 12:54:13 Ticket 8224 was removed from the pool.
+2024-12-12 12:54:14 Customer 5366 removed a ticket.
+2024-12-12 12:54:14 Ticket 717 was added to the pool, current Ticket count is 2.
+2024-12-12 12:54:16 Ticket 9137 was added to the pool, current Ticket count is 3.
+2024-12-12 12:54:19 Vendor 3228 released 2 tickets.
+2024-12-12 12:54:19 Ticket 1038 was removed from the pool.
+2024-12-12 12:54:20 Customer 5366 removed a ticket.
+2024-12-12 12:54:20 Ticket 717 was removed from the pool.
+2024-12-12 12:54:21 Customer 7188 removed a ticket.
+2024-12-12 12:54:21 Ticket 9137 was removed from the pool.
+2024-12-12 12:54:22 Customer 9006 removed a ticket.
+2024-12-12 12:54:22 No tickets available. Waiting to be removed.
+2024-12-12 12:54:23 Ticket 4856 was added to the pool, current Ticket count is 1.
+2024-12-12 12:54:25 Ticket 6054 was added to the pool, current Ticket count is 2.
+2024-12-12 12:54:27 Vendor 1200 released 2 tickets.
+2024-12-12 12:54:27 Ticket 4856 was removed from the pool.
+2024-12-12 12:54:28 Customer 4630 removed a ticket.
+2024-12-12 12:54:28 Ticket 6054 was removed from the pool.
+2024-12-12 12:54:29 Customer 9006 removed a ticket.
+2024-12-12 12:54:29 No tickets available. Waiting to be removed.
+2024-12-12 12:54:30 No tickets available. Waiting to be removed.
+2024-12-12 12:54:30 Ticket 6524 was added to the pool, current Ticket count is 1.
+2024-12-12 12:54:32 Ticket 1378 was added to the pool, current Ticket count is 2.
+2024-12-12 12:54:35 Vendor 3228 released 2 tickets.
+2024-12-12 12:54:35 Ticket 6524 was removed from the pool.
+2024-12-12 12:54:35 Ticket 1378 was removed from the pool.
+2024-12-12 12:54:35 Customer 7188 removed a ticket.
+2024-12-12 12:54:36 Customer 5366 removed a ticket.
+2024-12-12 12:54:36 No tickets available. Waiting to be removed.
+2024-12-12 12:54:37 Ticket 4024 was added to the pool, current Ticket count is 1.
+2024-12-12 12:54:39 Ticket 634 was added to the pool, current Ticket count is 2.
+2024-12-12 12:54:41 Vendor 1200 released 2 tickets.
+2024-12-12 12:54:42 Ticket 4024 was removed from the pool.
+2024-12-12 12:54:42 Customer 4630 removed a ticket.
+2024-12-12 12:54:42 Ticket 634 was removed from the pool.
+2024-12-12 12:54:43 Customer 9006 removed a ticket.
+2024-12-12 12:54:43 No tickets available. Waiting to be removed.
+2024-12-12 12:54:44 Ticket 6610 was added to the pool, current Ticket count is 1.
+2024-12-12 12:54:46 Ticket 3455 was added to the pool, current Ticket count is 2.
+2024-12-12 12:54:49 Vendor 3228 released 2 tickets.
+2024-12-12 12:54:49 Ticket 6610 was removed from the pool.
+2024-12-12 12:54:50 Customer 7188 removed a ticket.
+2024-12-12 12:54:50 Ticket 3455 was removed from the pool.
+2024-12-12 12:54:50 Customer 5366 removed a ticket.
+2024-12-12 12:54:51 No tickets available. Waiting to be removed.
+2024-12-12 12:54:51 No tickets available. Waiting to be removed.
+2024-12-12 12:54:52 Ticket 1760 was added to the pool, current Ticket count is 1.
+2024-12-12 12:54:54 Ticket 1605 was added to the pool, current Ticket count is 2.
+2024-12-12 12:54:56 Ticket 1760 was removed from the pool.
+2024-12-12 12:54:56 Vendor 1200 released 2 tickets.
+2024-12-12 12:54:57 Ticket 1605 was removed from the pool.
+2024-12-12 12:54:57 Customer 9006 removed a ticket.
+2024-12-12 12:54:57 Customer 4630 removed a ticket.
+2024-12-12 12:54:58 No tickets available. Waiting to be removed.
+2024-12-12 12:54:58 No tickets available. Waiting to be removed.
+2024-12-12 12:54:59 Ticket 5734 was added to the pool, current Ticket count is 1.
+2024-12-12 12:55:01 Ticket 3604 was added to the pool, current Ticket count is 2.
+2024-12-12 12:55:03 Ticket 5734 was removed from the pool.
+2024-12-12 12:55:03 Vendor 3228 released 2 tickets.
+2024-12-12 12:55:04 Ticket 3604 was removed from the pool.
+2024-12-12 12:55:04 Customer 5366 removed a ticket.
+2024-12-12 12:55:04 Customer 7188 removed a ticket.
+2024-12-12 12:55:05 No tickets available. Waiting to be removed.
+2024-12-12 12:55:05 Ticket 6260 was added to the pool, current Ticket count is 1.
+2024-12-12 12:55:07 Ticket 791 was added to the pool, current Ticket count is 2.
+2024-12-12 12:55:10 Vendor 1200 released 2 tickets.
+2024-12-12 12:55:10 Ticket 6260 was removed from the pool.
+2024-12-12 12:55:11 Customer 9006 removed a ticket.
+2024-12-12 12:55:11 Ticket 791 was removed from the pool.
+2024-12-12 12:55:11 Customer 4630 removed a ticket.
+2024-12-12 12:55:12 No tickets available. Waiting to be removed.
+2024-12-12 12:55:12 Ticket 4830 was added to the pool, current Ticket count is 1.
+2024-12-12 12:55:14 Ticket 5026 was added to the pool, current Ticket count is 2.
+2024-12-12 12:55:17 Vendor 3228 released 2 tickets.
+2024-12-12 12:55:17 Ticket 4830 was removed from the pool.
+2024-12-12 12:55:18 Ticket 5026 was removed from the pool.
+2024-12-12 12:55:18 Customer 5366 removed a ticket.
+2024-12-12 12:55:18 Customer 7188 removed a ticket.
+2024-12-12 12:55:19 No tickets available. Waiting to be removed.
+2024-12-12 12:55:19 No tickets available. Waiting to be removed.
+2024-12-12 12:55:20 Ticket 8547 was added to the pool, current Ticket count is 1.
+2024-12-12 12:55:22 Ticket 4700 was added to the pool, current Ticket count is 2.
+2024-12-12 12:55:24 Ticket 8547 was removed from the pool.
+2024-12-12 12:55:24 Vendor 1200 released 2 tickets.
+2024-12-12 12:55:25 Customer 4630 removed a ticket.
+2024-12-12 12:55:25 Ticket 4700 was removed from the pool.
+2024-12-12 12:55:26 Customer 9006 removed a ticket.
+2024-12-12 12:55:26 No tickets available. Waiting to be removed.
+2024-12-12 12:55:27 No tickets available. Waiting to be removed.
+2024-12-12 12:55:27 Ticket 5119 was added to the pool, current Ticket count is 1.
+2024-12-12 12:55:29 Ticket 1564 was added to the pool, current Ticket count is 2.
+2024-12-12 12:55:32 Ticket 5119 was removed from the pool.
+2024-12-12 12:55:32 Vendor 3228 released 2 tickets.
+2024-12-12 12:55:32 Ticket 1564 was removed from the pool.
+2024-12-12 12:55:32 Customer 7188 removed a ticket.
+2024-12-12 12:55:33 Customer 5366 removed a ticket.
+2024-12-12 12:55:33 No tickets available. Waiting to be removed.
+2024-12-12 12:55:34 Ticket 9029 was added to the pool, current Ticket count is 1.
+2024-12-12 12:55:36 Ticket 3068 was added to the pool, current Ticket count is 2.
+2024-12-12 12:55:38 Vendor 1200 released 2 tickets.
+2024-12-12 12:55:39 Ticket 9029 was removed from the pool.
+2024-12-12 12:55:39 Customer 4630 removed a ticket.
+2024-12-12 12:55:39 Ticket 3068 was removed from the pool.
+2024-12-12 12:55:40 Customer 9006 removed a ticket.
+2024-12-12 12:55:40 No tickets available. Waiting to be removed.
+2024-12-12 12:55:41 Ticket 7180 was added to the pool, current Ticket count is 1.
+2024-12-12 12:55:43 Ticket 8408 was added to the pool, current Ticket count is 2.
+2024-12-12 12:55:45 Vendor 3228 released 2 tickets.
+2024-12-12 12:55:46 Ticket 7180 was removed from the pool.
+2024-12-12 12:55:46 Ticket 8408 was removed from the pool.
+2024-12-12 12:55:46 Customer 7188 removed a ticket.
+2024-12-12 12:55:47 Customer 5366 removed a ticket.
+2024-12-12 12:55:47 No tickets available. Waiting to be removed.
+2024-12-12 12:55:48 No tickets available. Waiting to be removed.
+2024-12-12 12:55:48 Ticket 6994 was added to the pool, current Ticket count is 1.
+2024-12-12 12:55:50 Total producable tickets reached
+2024-12-12 12:55:51 Ticket 6994 was removed from the pool.
+2024-12-12 12:55:51 Customer 5366 removed a ticket.
+2024-12-12 12:55:52 No tickets available. Waiting to be removed.
+2024-12-12 12:55:52 Total producable tickets reached
+2024-12-12 12:55:53 No tickets available. Waiting to be removed.
+2024-12-12 12:55:53 Total producable tickets reached
+2024-12-12 12:55:53 No tickets available. Waiting to be removed.
+2024-12-12 12:55:53 No tickets available. Waiting to be removed.
+2024-12-12 12:57:49 Client disconnected from /logs
+2024-12-12 12:57:49 Client disconnected from /logs
+2024-12-12 12:57:49 Client disconnected from log stream
+2024-12-12 12:57:49 Client disconnected from log stream

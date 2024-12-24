@@ -4,7 +4,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-
 import com.google.gson.Gson;
 import com.shuaib.oopcw.models.Customer;
 import com.shuaib.oopcw.models.Vendor;
@@ -16,13 +15,14 @@ public class Configuration {
     private static final Gson gson = new Gson();
 
     private volatile boolean runStatus = true;
-    
+
     private volatile int totalTickets = 10;
     private volatile int ticketReleaseRate = 2000;
     private volatile int customerRetrievalRate = 2000;
     private volatile int maxTicketCapacity = 5;
-    
-    private Configuration() {}
+
+    private Configuration() {
+    }
 
     public static Configuration getInstance() {
         if (instance == null) {
@@ -33,7 +33,7 @@ public class Configuration {
 
     public boolean loadConfigJson(String json) {
         try {
-            instance = gson.fromJson(new FileReader(json),Configuration.class);
+            instance = gson.fromJson(new FileReader(json), Configuration.class);
             return true;
         } catch (IOException e) {
             return false;
@@ -99,7 +99,7 @@ public class Configuration {
         if (this.maxTicketCapacity != maxTicketCapacity) {
             this.maxTicketCapacity = maxTicketCapacity;
             TicketPool.getInstance().resumePool();
-        }      
+        }
         this.maxTicketCapacity = maxTicketCapacity;
     }
 
@@ -107,7 +107,7 @@ public class Configuration {
         try {
             while (!this.runStatus || !vendor.getRunStatus()) {
                 wait();
-            } 
+            }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
@@ -120,7 +120,7 @@ public class Configuration {
                 System.out.println("wait stopped");
                 System.out.println(this.runStatus);
                 System.out.println(customer.getRunStatus());
-            } 
+            }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }

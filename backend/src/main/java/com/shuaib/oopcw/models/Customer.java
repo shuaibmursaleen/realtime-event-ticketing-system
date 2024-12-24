@@ -2,7 +2,6 @@ package com.shuaib.oopcw.models;
 
 import java.util.Random;
 
-
 import com.shuaib.oopcw.config.Configuration;
 import com.shuaib.oopcw.eventstreams.LogStream;
 import com.shuaib.oopcw.synchronized_ticketpool.TicketPool;
@@ -29,13 +28,13 @@ public class Customer implements Runnable {
                 TicketPool.getInstance().removeTicket();
                 LogStream.getInstance().addEvent(String.format("Customer %d removed a ticket.", this.customerId));
                 Thread.sleep(this.retrievalInterval);
-                }          
+            }
         } catch (InterruptedException e) {
             LogStream.getInstance().addEvent(String.format("Customer %d Interrupted", this.customerId));
             Thread.currentThread().interrupt();
         }
     }
-    
+
     public int getCustomerId() {
         return this.customerId;
     }

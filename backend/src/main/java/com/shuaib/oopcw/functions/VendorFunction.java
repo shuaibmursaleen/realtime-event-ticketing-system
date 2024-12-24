@@ -11,7 +11,7 @@ public class VendorFunction {
     private final Map<Integer, Thread> vendorThreads;
 
     private VendorFunction() {
-	    this.vendors = new HashMap<>();
+        this.vendors = new HashMap<>();
         this.vendorThreads = new HashMap<>();
     }
 

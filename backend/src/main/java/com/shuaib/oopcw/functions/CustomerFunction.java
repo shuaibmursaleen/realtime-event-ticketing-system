@@ -4,13 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.shuaib.oopcw.models.Customer;
+
 public class CustomerFunction {
     private static CustomerFunction instance;
     private final Map<Integer, Customer> customers;
     private final Map<Integer, Thread> customerThreads;
 
     private CustomerFunction() {
-	    this.customers = new HashMap<>();
+        this.customers = new HashMap<>();
         this.customerThreads = new HashMap<>();
     }
 

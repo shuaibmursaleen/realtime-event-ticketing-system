@@ -10,13 +10,13 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Sinks;
 
 public class LogStream {
-    private static LogStream instance; 
+    private static LogStream instance;
     private final Logger logger;
     private Sinks.Many<String> logsSink;
-    
+
     private LogStream() {
-    this.logger = LogManager.getLogger("GLOBAL");
-    this.logsSink = Sinks.many().replay().limit(1);
+        this.logger = LogManager.getLogger("GLOBAL");
+        this.logsSink = Sinks.many().replay().limit(1);
     }
 
     public static LogStream getInstance() {
@@ -31,14 +31,14 @@ public class LogStream {
     }
 
     public void addEvent(String log) {
-        logsSink.tryEmitNext(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ").format(new Date())+ log);
+        logsSink.tryEmitNext(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ").format(new Date()) + log);
         logger.info(log);
         System.out.println();
     }
 
     public Flux<String> getStream() {
         return this.logsSink.asFlux()
-        .doOnCancel(() -> logger.info("Client disconnected from log stream"))
-        .doOnError(error -> logger.error("Error in log stream: {}", error.getMessage()));
+                .doOnCancel(() -> logger.info("Client disconnected from log stream"))
+                .doOnError(error -> logger.error("Error in log stream: {}", error.getMessage()));
     }
 }

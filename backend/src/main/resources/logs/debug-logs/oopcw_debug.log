@@ -1,15 +1,15 @@
-2024-12-12 02:25:15 - [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] Tomcat initialized with port 8080 (http)
-2024-12-12 02:25:15 - [org.apache.juli.logging.DirectJDKLog] Initializing ProtocolHandler ["http-nio-8080"]
-2024-12-12 02:25:16 - [org.apache.juli.logging.DirectJDKLog] Starting service [Tomcat]
-2024-12-12 02:25:16 - [org.apache.juli.logging.DirectJDKLog] Starting Servlet engine: [Apache Tomcat/10.1.31]
-2024-12-12 02:25:16 - [org.apache.juli.logging.DirectJDKLog] Initializing Spring embedded WebApplicationContext
-2024-12-12 02:25:16 - [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] Root WebApplicationContext: initialization completed in 1544 ms
-2024-12-12 02:25:16 - [org.apache.juli.logging.DirectJDKLog] Starting ProtocolHandler ["http-nio-8080"]
-2024-12-12 02:25:16 - [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] Tomcat started on port 8080 (http) with context path '/'
-2024-12-12 02:25:24 - [org.apache.juli.logging.DirectJDKLog] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-12 02:25:24 - [org.springframework.web.servlet.FrameworkServlet] Initializing Servlet 'dispatcherServlet'
-2024-12-12 02:25:24 - [org.springframework.web.servlet.FrameworkServlet] Completed initialization in 1 ms
-2024-12-12 02:25:44 - [org.apache.juli.logging.DirectJDKLog] Servlet.service() for servlet [dispatcherServlet] threw exception
+2024-12-12 12:47:36 - [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] Tomcat initialized with port 8080 (http)
+2024-12-12 12:47:36 - [org.apache.juli.logging.DirectJDKLog] Initializing ProtocolHandler ["http-nio-8080"]
+2024-12-12 12:47:36 - [org.apache.juli.logging.DirectJDKLog] Starting service [Tomcat]
+2024-12-12 12:47:36 - [org.apache.juli.logging.DirectJDKLog] Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-12 12:47:36 - [org.apache.juli.logging.DirectJDKLog] Initializing Spring embedded WebApplicationContext
+2024-12-12 12:47:36 - [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] Root WebApplicationContext: initialization completed in 967 ms
+2024-12-12 12:47:37 - [org.apache.juli.logging.DirectJDKLog] Starting ProtocolHandler ["http-nio-8080"]
+2024-12-12 12:47:37 - [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] Tomcat started on port 8080 (http) with context path '/'
+2024-12-12 12:48:13 - [org.apache.juli.logging.DirectJDKLog] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-12 12:48:13 - [org.springframework.web.servlet.FrameworkServlet] Initializing Servlet 'dispatcherServlet'
+2024-12-12 12:48:13 - [org.springframework.web.servlet.FrameworkServlet] Completed initialization in 1 ms
+2024-12-12 12:52:45 - [org.apache.juli.logging.DirectJDKLog] Servlet.service() for servlet [dispatcherServlet] threw exception
 java.io.IOException: An established connection was aborted by the software in your host machine
 	at java.base/sun.nio.ch.SocketDispatcher.write0(Native Method) ~[?:?]
 	at java.base/sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:54) ~[?:?]
@@ -47,7 +47,7 @@ java.io.IOException: An established connection was aborted by the software in yo
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[?:?]
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[?:?]
 	at java.base/java.lang.Thread.run(Thread.java:1583) [?:?]
-2024-12-12 02:25:44 - [org.apache.juli.logging.DirectJDKLog] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+2024-12-12 12:52:45 - [org.apache.juli.logging.DirectJDKLog] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
 java.io.IOException: An established connection was aborted by the software in your host machine
 	at java.base/sun.nio.ch.SocketDispatcher.write0(Native Method) ~[?:?]
 	at java.base/sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:54) ~[?:?]

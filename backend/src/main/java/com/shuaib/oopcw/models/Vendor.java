@@ -16,7 +16,6 @@ public class Vendor implements Runnable {
 
     private boolean runStatus;
 
-
     public Vendor(int ticketsPerRelease, int releaseInterval) {
         this.config = Configuration.getInstance();
         this.ticketPool = TicketPool.getInstance();
@@ -33,8 +32,9 @@ public class Vendor implements Runnable {
         try {
             while (true) {
                 config.vendorWaitTillRunning(this);
-                ticketPool.addTicket(this); 
-                LogStream.getInstance().addEvent(String.format("Vendor %d released %d tickets.", this.vendorId, this.ticketsPerRelease));
+                ticketPool.addTicket(this);
+                LogStream.getInstance().addEvent(
+                        String.format("Vendor %d released %d tickets.", this.vendorId, this.ticketsPerRelease));
                 Thread.sleep(config.getTicketReleaseRate());
             }
         } catch (InterruptedException e) {

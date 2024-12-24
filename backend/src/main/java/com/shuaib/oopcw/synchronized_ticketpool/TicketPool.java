@@ -36,10 +36,6 @@ public class TicketPool {
         return this.ticketCount;
     }
 
-    public void resetTicketCount() {
-        this.ticketCount = 0;
-    }
-
     public synchronized void addTicket(Vendor vendor) throws InterruptedException {
         try {
             Thread.sleep(500);
@@ -50,11 +46,14 @@ public class TicketPool {
                     waitForSpace();
                 }
                 while (tickets.size() >= Configuration.getInstance().getMaxTicketCapacity()) {
-                    LogStream.getInstance().addEvent(String.format("Pool is full. Ticket %d waiting to be added.", ticket.getTicketId()));
+                    LogStream.getInstance().addEvent(
+                            String.format("Pool is full. Ticket %d waiting to be added.", ticket.getTicketId()));
                     waitForSpace();
                 }
                 tickets.add(ticket);
-                LogStream.getInstance().addEvent(String.format("Ticket %d was added to the pool, current Ticket count is %d.", ticket.getTicketId(), tickets.size()));
+                LogStream.getInstance()
+                        .addEvent(String.format("Ticket %d was added to the pool, current Ticket count is %d.",
+                                ticket.getTicketId(), tickets.size()));
                 Thread.sleep(vendor.getReleaseInterval());
                 ticketCount++;
             }
@@ -73,17 +72,18 @@ public class TicketPool {
                 LogStream.getInstance().addEvent("No tickets available. Waiting to be removed.");
                 wait();
             }
-            LogStream.getInstance().addEvent(String.format("Ticket %d was removed from the pool.", tickets.get(0).getTicketId()));
+            LogStream.getInstance()
+                    .addEvent(String.format("Ticket %d was removed from the pool.", tickets.get(0).getTicketId()));
             tickets.remove(0);
             Thread.sleep(500);
             notifyAll();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            throw new InterruptedException(); 
-        } 
+            throw new InterruptedException();
+        }
     }
 
-    public synchronized void waitForSpace() throws InterruptedException{
+    public synchronized void waitForSpace() throws InterruptedException {
         wait();
     }
 
